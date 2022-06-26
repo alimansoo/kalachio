@@ -1,0 +1,21 @@
+.note{
+    border-radius: 5px;
+    padding: 16px;
+    box-shadow: inset 0px 0px 20px 1000000px #ffffffbe;
+    &-primary{
+        background-color: $primary-color;
+        border-right: 5px solid $primary-color;
+    }
+    &-success{
+        background-color: $success-color;
+        border-right: 5px solid $success-color;
+    }
+    &-danger{
+        background-color: $danger-color;
+        border-right: 5px solid $danger-color;
+    }
+    &-info{
+        background-color: $info-color;
+        border-right: 5px solid $info-color;
+    }
+}

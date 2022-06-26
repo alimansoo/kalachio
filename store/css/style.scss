@@ -1,0 +1,31 @@
+@import "values";
+@import "font";
+
+@import 'nav';
+@import 'search';
+@import 'slider';
+@import 'info';
+@import 'dropdown';
+@import 'ids';
+@import 'header';
+@import 'brand';
+body{
+    margin: 0;
+}
+.row{
+    width: 100%;
+}
+.z-index-1000{
+    z-index: 1000;
+}
+.brand-title{
+    margin: 0;
+}
+.btn{
+    &-primary{
+        background-color: $primary-color;
+    }
+}
+.text-primary{
+    color: $primary-color;
+}

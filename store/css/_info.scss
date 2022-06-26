@@ -1,0 +1,22 @@
+.sm-info{
+    margin-top: 1rem;
+    width: 5rem;
+    text-align: center;
+}
+.sm-info img{
+    width: 70%;
+    margin: 0 auto;
+}
+.sm-info a{
+    text-decoration: none;
+    color: black;
+}
+@media screen and (min-width:768px) {
+    
+}
+@media screen and (min-width:960px) {
+    .sm-info{
+        width: 5rem;
+        text-align: center;
+    }
+}

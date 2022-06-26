@@ -1,0 +1,138 @@
+// .content{
+//     background-color: white;
+//     margin: 1rem;
+//     border-radius: 5px;
+//     border: 1px solid gainsboro;
+// }
+// .content{
+//     padding: 1rem;
+// }
+main.content{
+    background-color: white;
+    &.p1{
+        padding: 1rem;
+    }
+}
+.content-box{
+    border-radius: 8px;
+    border: solid 1.5px #adadad;
+    background-color: rgb(241, 241, 241);
+    width: 100%;
+    align-items: center;
+    padding: .75rem;
+    height: fit-content;
+    &_title{
+        font-size: 1.2rem;
+        margin: 0 0 1rem 0;
+        font-weight: bolder;
+    }
+    &_secondtitle{
+        text-align: left;
+        font-size: 1.2rem;
+    }
+    &.box-block{
+        display: block;
+        width: 100%;
+    }
+}
+.auth-box{
+    border-radius: 4px;
+    border: solid 1.5px #adadad;
+    background-color: rgb(241, 241, 241);
+    width: 100%;
+    align-items: center;
+    max-width: 500px;
+    justify-content: center;
+    padding: .75rem;
+    &_title{
+        text-align: center;
+        font-size: 1.2rem;
+        margin: 1rem;
+        font-weight: bolder;
+    }
+}
+.row{
+    display: grid;
+    grid-template-columns: auto !important;
+    & .card{
+        flex: 1;
+    }
+}
+.row
+.col-sm{
+    &-1{
+        grid-template-columns: 100%;
+    }
+    &-2{
+        grid-template-columns: 50% 50%;
+    }
+    &-3{
+        grid-template-columns: 33% 33% 33%;
+    }
+    &-4{
+        grid-template-columns: 25% 25% 25% 25%;
+    }
+    &-5{
+        grid-template-columns: 20% 20% 20% 20% 20%;
+    }
+    &-6{
+        grid-template-columns: 16.5% 16.5% 16.5% 16.5% 16.5% 16.5%;
+    }
+}
+.gap-4{
+    grid-gap: 1rem;
+}
+/* Tablet */
+@media only screen and (min-width:540px)  {
+    .row{
+        grid-template-columns: auto auto !important;
+        grid-gap: .6rem .6rem !important;
+    }
+    .col-md{
+        &-1{
+            grid-template-columns: 100%;
+        }
+        &-2{
+            grid-template-columns: 50% 50%;
+        }
+        &-3{
+            grid-template-columns: 33% 33% 33%;
+        }
+        &-4{
+            grid-template-columns: 25% 25% 25% 25%;
+        }
+        &-5{
+            grid-template-columns: 20% 20% 20% 20% 20%;
+        }
+        &-6{
+            grid-template-columns: 16.5% 16.5% 16.5% 16.5% 16.5% 16.5%;
+        }
+    }
+}
+/* Desktop */
+@media only screen and (min-width:1000px) {
+    .row{
+        grid-template-columns: auto auto auto auto !important;
+        grid-gap: .7rem .7rem !important;
+    }
+    .col-lg{
+        &-1{
+            grid-template-columns: 100%;
+        }
+        &-2{
+            grid-template-columns: 50% 50%;
+        }
+        &-3{
+            grid-template-columns: 33% 33% 33%;
+        }
+        &-4{
+            grid-template-columns: 25% 25% 25% 25%;
+        }
+        &-5{
+            grid-template-columns: 20% 20% 20% 20% 20%;
+        }
+        &-6{
+            grid-template-columns: 16.5% 16.5% 16.5% 16.5% 16.5% 16.5%;
+        }
+    }
+}

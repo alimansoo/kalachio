@@ -1,0 +1,124 @@
+body{
+    direction: rtl;
+}
+.btn{
+    border: 0px;
+    font-size: 1rem;
+    text-align: center;
+    min-width: 5rem;
+    cursor: pointer;
+    margin: 4px;
+    padding: 0.6rem 1.2rem;
+    border-radius: 8px;
+    &-corner{
+        padding: 0.6rem 1.3rem;
+        border-radius: 24rem;
+    }
+    & i{
+        font-weight: bolder;
+        vertical-align: middle;
+    }
+    & i:first-child{
+        margin-right: -8px;
+        margin-left: 8px;
+    }
+    & i:last-child{
+        margin-right: 8px;
+        margin-left: -8px;
+    }
+    &-icon{
+        min-width: unset;
+        padding: 0.8rem 1.6rem;
+        width: 4rem;
+    }
+    &-corner.btn-icon{
+        padding: 0.8rem;
+        width: 3rem ;
+    }
+    &-icon i{
+        margin: 0 !important;
+        font-size: 1.2rem;
+    }
+    &-primary {
+        color: #fff;
+        background-color: $primary-color;
+        border-color: $primary-color;
+        outline-color: $primary-outline;
+    }
+    &-success{
+        color: #fff;
+        background-color: $success-color;
+        border-color: $success-color;
+        outline-color: $success-outline;
+    }
+    &-danger{
+        color: #fff;
+        background-color: $danger-color;
+        border-color: $danger-color;
+        outline-color: $danger-outline;
+    }
+    &-info {
+        color: #fff;
+        background-color: $info-color;
+        border-color: $info-color;
+        outline-color: $info-outline;
+    }
+    &-text{
+        border: 0;
+        outline: 0;
+        background-color: transparent;
+        color: $primary-color;
+    }
+    &-text:hover{
+        color: $primary-outline;
+        box-shadow: none !important;
+    }
+    &-primary:focus {
+        outline: 3.5px solid $primary-outline;
+    }
+    &-success:focus {
+        outline: 3.5px solid $success-outline;
+    }
+    &-danger:focus {
+        outline: 3.5px solid $danger-outline;
+    }
+    &-info:focus {
+        outline: 3.5px solid $info-outline;
+    }
+    &-primary.btn-outline{
+        outline-color: $primary-outline;
+        color: $primary-color;
+        border: 2px solid;
+        background-color: white;
+    }
+    &-success.btn-outline{
+        outline-color: $success-outline;
+        color: $success-color;
+        border: 2px solid;
+        background-color: white;
+    }
+    &-danger.btn-outline{
+        outline-color: $danger-outline;
+        color: $danger-color;
+        border: 2px solid;
+        background-color: white;
+    }
+    &-info.btn-outline{
+        outline-color: $info-outline;
+        color: $info-color;
+        border: 2px solid;
+        background-color: white;
+    }
+}
+// .btn:not(.btn-outline):hover{
+//     // box-shadow: inset 0px 0px 3px 30px rgb(0 0 0 / 26%);
+// }
+a.btn{
+    text-decoration: none;
+    font-family: inherit;
+}
+.block-btn{
+    display: block;
+    width: 100%;
+    margin: 4px 0;
+}

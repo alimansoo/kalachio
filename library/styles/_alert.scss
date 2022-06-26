@@ -1,0 +1,62 @@
+body{
+    direction: rtl;
+}
+.alert{
+    border: 1px solid;
+    padding: 20px 16px;
+    border-radius: 8px;
+    display: block;
+    font-size: 1.3rem;
+    overflow: hidden;
+    margin: 4px;
+
+    &-closabality{
+        padding-left: 36px;
+        position: relative;
+    }
+    &:first-child{
+        vertical-align: middle;
+    }
+    & .ion-icon,.alert .strong{
+        vertical-align: middle;
+    }
+    &.fade{
+        transition: all .15s linear;
+    }
+    &-success{
+        color: #155724;
+        background-color: #d4edda;
+        border-color: #c3e6cb;
+    }
+    &-info {
+        color: #0c5460;
+        background-color: #d1ecf1;
+        border-color: #bee5eb;
+    }
+    &-warning {
+        color: #856404;
+        background-color: #fff3cd;
+        border-color: #ffeeba;
+    }
+    &.close{
+        opacity: 0;
+    }
+    &-danger {
+        color: #721c24;
+        background-color: #f8d7da;
+        border-color: #f5c6cb;
+    }
+    & strong{
+        margin: 0 8px;
+    }
+    & button.close{
+        border: 0px;
+        color: inherit;
+        background-color: inherit;
+        font-size: 0.9em;
+        position: absolute;
+        left: 8px;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+}

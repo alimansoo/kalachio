@@ -1,0 +1,34 @@
+#desktopnavigation{
+    display: none;
+}
+@media screen and (min-width:768px) {
+    #desktopnavigation{
+        display: none;
+    }
+}
+@media screen and (min-width:960px) {
+    #humberger{
+        display: none;
+    }
+    .navbar_list li{
+        min-width: 80px;
+        position: relative;
+        vertical-align: sub;
+    }
+    .navbar_list li::after{
+        position: absolute;
+        bottom: 0;
+        right: 5px;
+        content: " ";
+        background-color: var(--primary);
+        height: 4px;
+        width: 0px;
+        transition: all .2s linear;
+    }
+    .navbar_list li:hover::after{
+        width: 80px;
+    }
+    #desktopnavigation{
+        display: flex;
+    }
+}

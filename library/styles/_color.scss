@@ -1,0 +1,25 @@
+.text{
+    &-white{
+        color: white;
+    }
+    &-center{
+        text-align: center;
+    }
+    &-dark{
+        color: #333;
+    }
+    &-primary{
+        color: $primary-color;
+    }
+}
+.bg{
+    &-dark{
+        background-color: #333;
+    }
+    &-light{
+        background-color: whitesmoke;
+    }
+    &-primary{
+        background-color: $primary-color;
+    }
+}

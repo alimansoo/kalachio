@@ -1,0 +1,23 @@
+.navbar{
+    display: block;
+    min-height: 3rem;
+    padding: 1rem;
+    align-items: center;
+    &_list{
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        & li{
+            padding: .25rem .75rem;
+            & i:first-child{
+                margin-left: .5rem;
+                transform: scale(1.25);
+            }
+        }
+    }
+    &-small{
+        padding: 0;
+        height: 24px;
+    }
+}

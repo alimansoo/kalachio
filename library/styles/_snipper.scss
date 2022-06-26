@@ -1,0 +1,55 @@
+@keyframes sniper {
+    from {transform: rotate(0deg);}
+    to {transform: rotate(720deg);}
+}
+@keyframes sniper-grow {
+    0% {transform: scale(0);opacity: 0;}
+    50% {transform: none;opacity: 50%;}
+}
+.snipper{
+    display: inline-block;
+    width: 2rem;
+    height: 2rem;
+    border: 5px solid;
+    border-top-color: transparent !important;
+    border-radius: 50%;
+    animation: sniper .75s linear infinite;
+
+    &-primary{
+        border-color: $primary-color;
+    }
+    &-danger{
+        border-color: $danger-color;
+    }
+    &-success{
+        border-color: $success-color;
+    }
+    &-info{
+        border-color: $info-color;
+    }
+    &-secondary{
+        border-color: $secondary-color;
+    }
+    
+    &-grow{
+        animation: sniper-grow .75s linear infinite;
+        transition: all 0.5s;
+        &.snipper{
+            &-primary{
+                background-color: $primary-color;
+            }
+            &-info{
+                background-color: $info-color;
+            }
+            &-success{
+                background-color: $success-color;
+            }
+            &-danger{
+                background-color: $danger-color;
+            }
+            &-secondary{
+                background-color: $secondary-color;
+            }
+        }
+    }
+}

@@ -1,0 +1,46 @@
+@import "values";
+@import "font";
+
+:lang(fa){
+    direction: rtl;
+}
+*{
+    box-sizing: border-box;
+    font-family: $font-family;
+}
+body{
+    margin: 3px;
+}
+.price_component{
+    font-size: .8rem;
+    color: gray;
+}
+@import 'styles/grid';
+@import 'styles/align';
+@import 'styles/alert';
+@import 'styles/background';
+@import 'styles/badge';
+@import 'styles/border';
+@import 'styles/button';
+@import 'styles/button-group';
+@import 'styles/progress';
+@import 'styles/card';
+@import 'styles/margin_padding';
+@import 'styles/container';
+@import 'styles/color';
+@import 'styles/slider';
+@import 'styles/input';
+@import 'styles/snipper';
+@import 'styles/note';
+@import 'styles/dropdown';
+@import 'styles/navbar';
+@import 'styles/position';
+@import 'styles/flex';
+@import 'styles/padding';
+@import 'styles/display';
+@import 'styles/festival';
+@import 'styles/size';
+@import 'styles/footer';
+@import 'styles/text';
+@import 'styles/sidebar';
+@import 'styles/scrollbar';

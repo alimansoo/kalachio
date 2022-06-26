@@ -1,0 +1,11 @@
+#mainHeader{
+    padding: 0.5rem 0.5rem;
+}
+@media screen and (min-width:768px) {
+    
+}
+@media screen and (min-width:960px) {
+    #mainHeader{
+        padding: .5rem 1.5rem;
+    }
+}

@@ -1,0 +1,28 @@
+.btn-group{
+    display: inline-flex;
+    padding: 0;
+    margin: 4px;
+    & .btn:first-child{
+        border-bottom-right-radius: 0.24rem;
+        border-top-right-radius: 0.24rem;
+    }
+    & .btn:last-child{
+        border-bottom-left-radius: 0.24rem;
+        border-top-left-radius: 0.24rem;
+    }
+    &-corner .btn:first-child{
+        border-bottom-right-radius: 24rem;
+        border-top-right-radius: 24rem;
+    }
+    &-corner .btn:last-child{
+        border-bottom-left-radius: 24rem;
+        border-top-left-radius: 24rem;
+    }
+    & .btn{
+        border-radius: 0;
+        margin: 0px;
+    }
+    & .btn.outline{
+        z-index: 20;
+    }
+}

@@ -1,0 +1,120 @@
+body#body-container{
+    display: grid;
+    min-height: 100vh;
+    background-color: var(--primary-container);
+}
+
+header#header{
+    grid-column: 1/3;
+}
+nav#navigation-bar{
+    grid-column: 1/3;
+}
+main#container{
+    grid-column: 1/3;
+}
+.grid-column-2-4{
+    grid-column: 2/4;
+}
+footer#footer{
+    grid-column: 1/3;
+}
+.grid-30-70{
+    grid-template-columns: 30% 70%;
+}
+.grid-35-65{
+    grid-template-columns: 35% 65%;
+}
+.grid-20-80{
+    grid-template-columns: 20% 80%;
+}
+.grid-25-75{
+    grid-template-columns: 25% 75%;
+}
+.grid-50-50{
+    grid-template-columns: 50% 50%;
+}
+.grid-100{
+    grid-template-columns: 100%;
+}
+.grid-70-30{
+    grid-template-columns: 70% 30%;
+}
+.grid-40-60{
+    grid-template-columns: 40% 60%;
+}
+.grid-display{
+    display: grid;
+}
+.col-sm-1{
+    grid-template-columns: auto;
+}
+.col-sm-2{
+    grid-template-columns: auto auto;
+}
+.col-sm-3{
+    grid-template-columns: auto auto auto;
+}
+.col-sm-4{
+    grid-template-columns: auto auto auto auto;
+}
+.col-sm-5{
+    grid-template-columns: 20% 20% 20% 20% 20%;
+}
+.grid-row-container{
+    grid-template-rows: 70px 40px auto;
+}
+/* Tablet */
+@media only screen and (min-width:540px)  { 
+    .col-md-1{
+        grid-template-columns: auto;
+    }
+    .col-md-2{
+        grid-template-columns: auto auto;
+    }
+    .col-md-3{
+        grid-template-columns: auto auto auto;
+    }
+    .col-md-4{
+        grid-template-columns: auto auto auto auto;
+    }
+    .col-md-5{
+        grid-template-columns: 20% 20% 20% 20% 20%;
+    }
+}
+/* Desktop */
+@media only screen and (min-width:1000px) {
+    .col-lg-1{
+        grid-template-columns: auto;
+    }
+    .col-lg-2{
+        grid-template-columns: auto auto;
+    }
+    .col-lg-3{
+        grid-template-columns: auto auto auto;
+    }
+    .col-lg-4{
+        grid-template-columns: 25% 25% 25% 25%;
+    }
+    .col-lg-5{
+        grid-template-columns: 20% 20% 20% 20% 20%;
+    }
+    .col-lg-6{
+        grid-template-columns: auto auto auto auto auto auto;
+    }
+    .col-lg-70-30{
+        grid-template-columns: 70% 30%;
+    }
+    .col-lg-3-product-view{
+        grid-template-columns: 39% auto 27%;
+    }
+    .grid-lg-1to3{
+        grid-column: 1/3;
+    }
+    .grid-lg-1to4{
+        grid-column: 1/4;
+    }
+    .grid-lg-2to5{
+        grid-column: 2/5;
+    }
+}

@@ -1,0 +1,23 @@
+.custom-scroll{
+    &::-webkit-scrollbar {
+        width: 8px;
+    }
+    &::-webkit-scrollbar-track {
+        border-radius: 10px;
+    }
+    &::-webkit-scrollbar-thumb {
+        background: rgb(196, 196, 196); 
+        border-radius: 10px;
+    }
+    &::-webkit-scrollbar-thumb:hover {
+        background: rgb(124, 123, 123); 
+    }
+}
+.ov{
+    &-x{
+        overflow-x: auto;
+    }
+    &-y{
+        overflow-y: auto;
+    }
+}

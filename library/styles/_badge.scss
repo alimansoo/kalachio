@@ -1,0 +1,47 @@
+.badge{
+    border-radius: 4px;
+    padding: 8px 8px;
+    font-size: small !important;
+    &-top-left{
+        position: relative;
+        top: -10px;
+        right: -8px;
+    }
+    &-top-right{
+        position: relative;
+        top: -10px;
+        left: -8px;
+    }
+    &-pill{
+        border-radius: 24px;
+        padding: 4px 6px;
+        width: fit-content;
+    }
+    &-dot{
+        font-size: 1px  !important;
+        padding: 5px;
+        border-radius: 1.25rem;
+        height: 4px;
+    }
+    &-secondary{
+        color: #fff;
+        background-color: $secondary-color;
+    }
+    &-primary{
+        color: #fff;
+        background-color: $primary-color;
+    }
+    &-success{
+        color: #fff;
+        background-color: $success-color;
+    }
+    &-danger{
+        color: #fff;
+        background-color: $danger-color;
+    }
+    &-small{
+        font-size: 0.7rem  !important;
+        padding: 2px 4px;
+        height: 1.5em;
+    }
+}

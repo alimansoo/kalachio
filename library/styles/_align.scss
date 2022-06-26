@@ -1,0 +1,17 @@
+.w-center{
+    display: inline-block;
+    margin-left: auto;            
+    margin-right: auto;
+}
+.h-center{
+    vertical-align: middle;
+}
+.c-h-center{   
+    position: absolute;
+    top:0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    
+    margin: auto;
+}
