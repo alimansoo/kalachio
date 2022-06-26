@@ -59,3 +59,125 @@
         }
     }
 }
+tr.cartitem{
+    display: grid;
+    grid-template-columns: 30% 70%;
+    height: 180px;
+    overflow: hidden;
+    border-bottom: 1px solid gray;
+}
+
+.cartitem_image img{
+    width: 85%;
+    border-radius: 8px;
+}
+.cartitem_image{
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+}
+.cartitem_content{
+    padding: 12px !important;
+    text-align: right;
+    display: grid;
+    grid-template-rows: auto;
+    
+}
+.cartitem_content_name{
+    font-size: 1rem;
+    font-weight: 100;
+    color: black !important;
+}
+.cartitem_content_price{
+    font-size: .9rem;
+    font-weight: 100;
+    
+}
+.quantity{
+    padding: 4px;
+    border: 1px solid var(--primary);
+    border-radius: 4px;
+    display: inline;
+    font-size: 1.3em;
+}
+.quantity_btn{
+    padding: 8px;
+}
+
+.cart-small-content{
+    height: fit-content;
+    position: sticky;
+    top: 12px;
+    &-row{
+        padding: 6px 0;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        &_key{
+            font-size: 1rem;
+        }
+        &_value{
+            font-size: 1.2rem;
+        }
+    }
+}
+.m-1{
+    margin: .25rem;
+}
+.cartitem_content_name{
+    margin: 0;
+    font-size: 1.4rem;
+}
+.quantity{
+    border:1px solid navy;
+}
+.cartitem_content_price{
+    font-size: 1.1rem;
+}
+.cartitem_content_quantity{
+    font-size: .8rem;
+}
+.quantity_btn{
+    text-decoration: none;
+    color: gray;
+}
+.cartitem_content_action{
+    font-size: 1rem;
+    color: navy;
+    & a{
+        color: grey;
+        text-decoration: none;
+    }
+}
+.bg{
+    &-white{
+        background-color: white;
+    }
+}
+.table {
+    // margin-top: 12px;
+    /* display: block; */
+    border-spacing: 0;
+    border-radius: 4px;
+    width: 100%;
+    border: 1px solid;
+    background-color: #FFFFFF;
+}
+
+/* Tablet */
+@media only screen and (min-width:540px)  {
+    tr.cartitem{
+        height: 180px;
+        grid-template-columns: 40% 60%;
+    }
+
+}
+/* Desktop */
+@media only screen and (min-width:1000px) {
+    tr.cartitem{
+        height: 230px;
+        grid-template-columns: 30% 70%;
+        border-bottom: 1px solid black;
+    }
+}
