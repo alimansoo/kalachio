@@ -732,6 +732,8 @@ a.btn {
 
 main.content {
   background-color: white;
+  width: 100vw;
+  overflow-x: hidden;
 }
 
 main.content.p1 {
