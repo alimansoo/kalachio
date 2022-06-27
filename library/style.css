@@ -29,6 +29,11 @@ body#body-container {
   background-color: var(--primary-container);
 }
 
+.d-grid {
+  display: -ms-grid;
+  display: grid;
+}
+
 header#header {
   -ms-grid-column: 1;
   -ms-grid-column-span: 2;
@@ -51,6 +56,12 @@ main#container {
   -ms-grid-column: 2;
   -ms-grid-column-span: 2;
   grid-column: 2/4;
+}
+
+.grid-column-2-5 {
+  -ms-grid-column: 2;
+  -ms-grid-column-span: 3;
+  grid-column: 2/5;
 }
 
 footer#footer {
@@ -132,6 +143,10 @@ footer#footer {
 .grid-row-container {
   -ms-grid-rows: 70px 40px auto;
       grid-template-rows: 70px 40px auto;
+}
+
+.grid-sm-auto {
+  grid-column: auto;
 }
 
 /* Tablet */
