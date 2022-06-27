@@ -226,3 +226,36 @@ tr.cartitem{
         display: block;
     }
 }
+
+.orderRow{
+    border: 1px solid gray;
+    border-radius: 8px;
+    margin: 12px 0;
+}
+.orderRow:last-child{
+    margin-bottom: 0;
+}
+.orderRow_header{
+    border-bottom: 1px solid gray;
+    padding: 8px;
+}
+.orderRow_content{
+    padding: 8px;
+}
+.orderRow_footer{
+    border-top: 1px solid gray;
+    padding: 8px;
+    text-align: end;
+}
+.orderRow_footer a{
+    color: blue;
+}
+.productImg{
+    width: 50px;
+    height: 50px;
+    border: 1px solid darkgray;
+    border-radius: 4px;
+}
+span.date{
+    direction: ltr;
+}

@@ -8,6 +8,7 @@ const page_address = array(
     'product' => ['url'=>'product','page'=>'product'],
     'cart' => ['url'=>'cart','page'=>'cart'],
     'userpanel' => ['url'=>'userpanel','page'=>'userpanel'],
+    'myorders' => ['url'=>'myorders','page'=>'myorders'],
 );
 $page = page_address[$request]['page'];
 $maincontent = file_get_contents(Template::IncludePath("page/".$page));
