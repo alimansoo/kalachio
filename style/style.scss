@@ -259,3 +259,22 @@ tr.cartitem{
 span.date{
     direction: ltr;
 }
+.table {
+    tr{
+        &:last-child{
+            td{
+                border-bottom: none;
+            }
+        }
+        td {
+            height: 52px;
+            border-bottom: 1px solid gray;
+            text-align: center;
+        }
+        th{
+            height: 52px;
+            border-bottom: 1px solid gray;
+            text-align: center; 
+        }
+    }
+}

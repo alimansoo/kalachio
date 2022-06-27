@@ -318,4 +318,20 @@ tr.cartitem {
 span.date {
   direction: ltr;
 }
+
+.table tr:last-child td {
+  border-bottom: none;
+}
+
+.table tr td {
+  height: 52px;
+  border-bottom: 1px solid gray;
+  text-align: center;
+}
+
+.table tr th {
+  height: 52px;
+  border-bottom: 1px solid gray;
+  text-align: center;
+}
 /*# sourceMappingURL=style.css.map */
