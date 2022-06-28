@@ -7,7 +7,6 @@ const controllers_rout = array(
 
 $request = $_SERVER['REQUEST_SCHEME'].'://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
 $request = str_replace(SITE_URL,'',$request);
-// echo $request;
 if (strpos($request,"b/") !== false) {
     $request = substr($request,2);
     include "controllers/main_controller.php";

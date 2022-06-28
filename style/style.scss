@@ -1,3 +1,4 @@
+@import 'adminpanel';
 .w-center{
     display: inline-block;
     margin-left: auto;            
@@ -199,17 +200,11 @@ tr.cartitem{
         }
     }
 }
-#sidebar{
-    display: none;
-}
 /* Tablet */
 @media only screen and (min-width:540px)  {
     tr.cartitem{
         height: 180px;
         grid-template-columns: 40% 60%;
-    }
-    #sidebar{
-        display: none;
     }
 }
 /* Desktop */
@@ -222,8 +217,18 @@ tr.cartitem{
     #mobilesidebar{
         display: none;
     }
-    #sidebar{
+    #adminsidebar{
         display: block;
+        ul{
+            transform: none;
+            width: 20vw;
+            overflow-x: hidden;
+            min-width: 0;
+            max-width: 20vw;
+        }
+    }
+    #adminsidebarIcon{
+        display: none;
     }
 }
 
@@ -277,4 +282,71 @@ span.date{
             text-align: center; 
         }
     }
+}
+
+#adminsidebarIcon{
+    display: inline-block;
+}
+#navigation-bar{
+    margin-right: 0;
+    display: flex;
+        justify-content: space-between;
+        height: 64px;
+        ul{
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+}
+
+/* Tablet */
+@media only screen and (min-width:540px)  {
+    #adminsidebar{
+        width: 0;
+    }
+    #maincontent{
+        margin-right: 0;
+        width: 100vw;
+    }
+    #navigation-bar{
+        margin-right: 0;
+        display: flex;
+        justify-content: space-between;
+        height: 64px;
+        ul{
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+    }
+}
+/* Desktop */
+@media only screen and (min-width:1000px) {
+    #adminsidebar{
+        // display: block;
+        width: 20vw;
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        background-color: white
+    }
+    #maincontent{
+        margin-right: 20vw;
+        width: 80vw;
+    }
+    #navigation-bar{
+        margin-right: 20vw;
+        display: flex;
+        justify-content: space-between;
+        height: 64px;
+        ul{
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+    }
+}
+.bg-gr{
+    background-color: rgb(231, 231, 231) !important;
 }

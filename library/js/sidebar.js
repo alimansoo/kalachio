@@ -17,6 +17,7 @@ function Render() {
         let sidebarid = this.getAttribute('data-bind');
         let sidebar = document.querySelector('#'+sidebarid);
         sidebar.classList.add('show');
+        console.log(sidebar);
         sidebar.querySelector('.h-sidebar_back').addEventListener('click',CloseSidebar);
     }
     function CloseSidebar(e) {

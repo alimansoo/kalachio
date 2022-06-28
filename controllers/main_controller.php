@@ -10,26 +10,37 @@ const page_address = array(
     'userpanel' => ['url'=>'userpanel','page'=>'userpanel'],
     'myorders' => ['url'=>'myorders','page'=>'myorders'],
     'deatordr' => ['url'=>'deatordr','page'=>'deatordr'],
+    //ADMIN
+    'admin.dashboard' => ['url'=>'admin/','page'=>'admin/dashboard'],
 );
-$page = page_address[$request]['page'];
+$url;
+foreach (page_address as $key => $value) {
+    if ($value['url']===$request) {
+        $url = $value;
+        break;
+    }
+}
+$page = $url['page'];
 $maincontent = file_get_contents(Template::IncludePath("page/".$page));
-// echo $request;
-
-
-$festival = file_get_contents(Template::IncludePath("festival"));
-$header = file_get_contents(Template::IncludePath("header"));
-$navbar = file_get_contents(Template::IncludePath("navbar"));
-$sidebar = file_get_contents(Template::IncludePath("sidebar"));
-$footer = file_get_contents(Template::IncludePath("footer"));
-
-
-$page_content = 
+if (substr($page,0,5)==="admin") {
+    $navbar = file_get_contents(Template::IncludePath("adminNavbar"));
+    $sidebar = file_get_contents(Template::IncludePath("adminSidebar"));
+    $page_content = $navbar.$sidebar.$maincontent ;
+}else {
+    $festival = file_get_contents(Template::IncludePath("festival"));
+    $header = file_get_contents(Template::IncludePath("header"));
+    $navbar = file_get_contents(Template::IncludePath("navbar"));
+    $sidebar = file_get_contents(Template::IncludePath("sidebar"));
+    $footer = file_get_contents(Template::IncludePath("footer"));
+    $page_content = 
         $festival 
         . $header 
         . $navbar 
         . $sidebar 
         . $maincontent 
         . $footer ;
+}
+
 $array = array(
     "Title"=>"کالاچیو",
     "content"=>$page_content
