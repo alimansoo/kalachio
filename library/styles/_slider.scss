@@ -16,7 +16,7 @@
         height: 100%;
         transform: rotateX(-50%);
     }
-    &-image{
+    &_image{
         opacity: 0;
         position: absolute;
         top: 0;
@@ -29,7 +29,7 @@
             opacity: 100%;
         }
     }
-    &-controller{
+    &_controller{
         position: absolute;
         top: 50%;
         transform: translateY(-50%);
@@ -60,7 +60,7 @@
             left: 10px; 
         }
     }
-    &-item{
+    &_item{
         width: 10px;
         height: 10px;
         background-color: rgba(255, 255, 255, 0.486);
@@ -69,7 +69,7 @@
         border-radius: 8px;
         transition: all .3s;
         cursor: pointer;
-        &-group{
+        &_group{
             position: absolute;
             bottom: 12px;
             right: 12px;

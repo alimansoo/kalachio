@@ -1,24 +1,24 @@
 <main class="content">
         <div class="slider" id="homeSlider">
-            <picture class="slider-image">
+            <picture class="slider_image">
                 <source media="(min-width:1000px)" srcset="store/slide1-desktop.gif">
                 <source media="(min-width:540px)" srcset="store/slide1-desktop.gif">
                 <img src="store/slide1-mobile.gif" alt="Flowers">
             </picture>
-            <picture class="slider-image">
+            <picture class="slider_image">
                 <source media="(min-width:1000px)" srcset="store/slide2-desktop.gif">
                 <source media="(min-width:540px)" srcset="store/slide2-desktop.gif">
                 <img src="store/slide2-mobile.gif" alt="Flowers">
             </picture>
-            <picture class="slider-image">
+            <picture class="slider_image">
                 <source media="(min-width:1000px)" srcset="store/slide3-desktop.gif">
                 <source media="(min-width:540px)" srcset="store/slide3-desktop.gif">
                 <img src="store/slide3-mobile.gif" alt="Flowers">
             </picture>
-            <button class="slider-controller next"></button>
-            <button class="slider-controller prev"></button>
+            <button class="slider_controller next"></button>
+            <button class="slider_controller prev"></button>
     
-            <div class="slider-item-group"></div>
+            <div class="slider_item_group"></div>
         </div>
         <div class="row d-flex flex-wrap align-content-center justify-space-evenly mb-4">
             <div class="sm-info"><a href=""><img src="store/sm1.png" alt="">لینک</a></div>

@@ -7,32 +7,32 @@ function sliderRender() {
         for (const slider of allslider) {
             //set picturs number
             slider.getAttribute
-            let allpicture = slider.querySelectorAll('picture.slider-image');
+            let allpicture = slider.querySelectorAll('picture.slider_image');
             let i =0;
             for (const picture of allpicture) {
                 picture.setAttribute('number',i++);
             }
             //set slide controller icon
-            slider.querySelector('.slider-controller.next').innerHTML = '<i class="fa fa-chevron-right"></i>';
-            slider.querySelector('.slider-controller.prev').innerHTML = '<i class="fa fa-chevron-left"></i>';
+            slider.querySelector('.slider_controller.next').innerHTML = '<i class="fa fa-chevron-right"></i>';
+            slider.querySelector('.slider_controller.prev').innerHTML = '<i class="fa fa-chevron-left"></i>';
             //set clickable 
-            slider.querySelector('.slider-controller.next').addEventListener('click',
+            slider.querySelector('.slider_controller.next').addEventListener('click',
             () => {
                 nextSlide(slider);
             });
-            slider.querySelector('.slider-controller.prev').addEventListener('click',
+            slider.querySelector('.slider_controller.prev').addEventListener('click',
             () => {
                 prevSlide(slider);
             });
             //set slider item
-            let slideitem = slider.querySelector('.slider-item-group');
+            let slideitem = slider.querySelector('.slider_item_group');
             if (slideitem) {
                 for (let index = 0; index < i; index++) {
-                    slideitem.innerHTML += "<span class='slider-item' number='"+index+"'></span>";
+                    slideitem.innerHTML += "<span class='slider_item' number='"+index+"'></span>";
                 }
             }
             //set clickable
-            let allSliderItem = document.querySelectorAll('.slider-item');
+            let allSliderItem = document.querySelectorAll('.slider_item');
             if (allSliderItem.length > 0) {
                 for (const sliderItem of allSliderItem) {
                     sliderItem.addEventListener('click',goToslide);
@@ -40,14 +40,14 @@ function sliderRender() {
             }
         }
         for (const slider1 of allslider) {
-            slider1.querySelector('.slider-image').classList.add('show');
-            slider1.querySelector('.slider-item-group .slider-item').classList.add('active');
+            slider1.querySelector('.slider_image').classList.add('show');
+            slider1.querySelector('.slider_item_group .slider_item').classList.add('active');
         }
     }
     function goToslide(e) {
         let parent = this.closest('.slider');
-        let allSliderImages = parent.querySelectorAll('.slider-image');
-        let allSliderItem = parent.querySelectorAll('.slider-item');
+        let allSliderImages = parent.querySelectorAll('.slider_image');
+        let allSliderItem = parent.querySelectorAll('.slider_item');
         let sliderlength = allSliderImages.length;
         let indexed = this.getAttribute('number');
         //hide all slider images
@@ -69,10 +69,10 @@ function sliderRender() {
     }
     function nextSlide(element) {
         let parent = element.closest('.slider');
-        let allSliderImages = parent.querySelectorAll('.slider-image');
-        let allSliderItem = parent.querySelectorAll('.slider-item');
+        let allSliderImages = parent.querySelectorAll('.slider_image');
+        let allSliderItem = parent.querySelectorAll('.slider_item');
         let sliderlength = allSliderImages.length;
-        let indexed = parent.querySelector('.slider-image.show').getAttribute('number');
+        let indexed = parent.querySelector('.slider_image.show').getAttribute('number');
         indexed++;
         if (indexed > sliderlength-1) {
             indexed = 0;
@@ -97,10 +97,10 @@ function sliderRender() {
     }
     function prevSlide(element) {
         let parent = element.closest('.slider');
-        let allSliderImages = parent.querySelectorAll('.slider-image');
-        let allSliderItem = parent.querySelectorAll('.slider-item');
+        let allSliderImages = parent.querySelectorAll('.slider_image');
+        let allSliderItem = parent.querySelectorAll('.slider_item');
         let sliderlength = allSliderImages.length;
-        let indexed = parent.querySelector('.slider-image.show').getAttribute('number');
+        let indexed = parent.querySelector('.slider_image.show').getAttribute('number');
         indexed--;
         if (indexed < 0) {
             indexed = sliderlength-1;

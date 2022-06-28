@@ -1,5 +1,5 @@
 .h-sidebar{
-    
+    user-select: none;
     &-back{
         display: none;
     }
@@ -36,9 +36,56 @@
         transition: all 0.3s linear;
         & li{
             padding: 0.75rem 1.2rem;
+            border-radius: 24px;
+            margin: 4px;
+            &:hover:not(:first-child){
+                background-color: lighten($color: $primary-color, $amount: 70);
+            }
             & i{
                 margin-left: .75rem;
                 transform: scale(1.2);
+            }
+            a{
+                color: inherit;
+                text-decoration: none;
+            }
+        }
+    }
+}
+.sidebar{
+    margin: 0;
+    padding: 0;
+    &_list{
+        list-style-type: none;
+        padding: .75rem;
+        margin: 0;
+        &.border-item{
+            .sidebar_list_item{
+                border-bottom: 1px solid gray;
+                &:last-child{
+                    border-bottom: 0;
+                }
+            }
+        }
+        &_item{
+            font-size: 1.1rem;
+            padding: 1rem;
+            &:first-child{
+                padding-top: .25rem;
+            }
+            &:last-child{
+                border-bottom: 0;
+                padding-bottom: .25rem;
+            }
+            a{
+                text-decoration: none;
+                color: black;
+                
+            }
+            i{
+                margin-left: .75rem;
+                font-size: 1.5rem;
+                vertical-align: bottom;
             }
         }
     }

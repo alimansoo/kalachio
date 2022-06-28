@@ -1,0 +1,17 @@
+.category-card{
+    border: 1px solid gainsboro;
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+    display: inline-flex;
+    flex-direction: column;
+    text-decoration: none;
+    &_img{
+        margin-top: .25rem;
+    }
+    &_title{
+        text-align: center;
+        color: black;
+        padding: .5rem 0;
+    }
+}

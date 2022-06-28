@@ -1,4 +1,5 @@
 .search-box{
+    
     display: none;
     outline: none;
     border: none;
@@ -8,7 +9,7 @@
     color: #333;
     min-width: 10rem;
     background-color: rgba(128, 128, 128, 0.212);
-    background-image: url('../search-outline.svg');
+    background-image: url('../store/search-outline.svg');
     background-repeat: no-repeat;
     background-position: right;
     background-size: 30px;

@@ -13,11 +13,17 @@
     }
 }
 .bg{
+    &-white{
+        background-color: white;
+    }
     &-dark{
         background-color: #333;
     }
     &-light{
         background-color: whitesmoke;
+    }
+    &-secendary{
+        background-color: $secondary-color;
     }
     &-primary{
         background-color: $primary-color;

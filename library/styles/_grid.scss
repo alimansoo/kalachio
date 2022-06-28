@@ -6,6 +6,14 @@ body#body-container{
 .d-grid{
     display: grid;
 }
+.gap{
+    &_8{
+        grid-gap: 8px;
+    }
+    &_4{
+        grid-gap: 4px;
+    }
+}
 header#header{
     grid-column: 1/3;
 }
