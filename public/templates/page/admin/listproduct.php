@@ -1,0 +1,30 @@
+<main class="content p1" id="maincontent">
+    <section class="content-box">
+        <h3 class="content-box_title">
+            لیست محصولات
+        </h3>
+    <table class="table">
+        <tbody>
+            <tr class="cus-row">
+                <th>تصویر</th>
+                <th>نام محصول</th>
+                <th>قیمت</th>
+                <th>تعداد</th>
+            </tr>
+            <tr class="cus-row">
+                <td><img src="http://localhost/KalaChio/img/p1.jpg" alt="" width="50px"></td>
+                <td>بنر زیارتی</td>
+                <td><span>0</span>ریال</td>
+                <td>0</td>
+            </tr>
+            <tr class="cus-row">
+                <td><img src="http://localhost/KalaChio/img/p2.jpg" alt="" width="50px"></td>
+                <td>بنر استند</td>
+                <td><span>0</span>ریال</td>
+                <td>0</td>
+            </tr>
+            </tbody>
+        </table>
+    </section>
+    
+</main>

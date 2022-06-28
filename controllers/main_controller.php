@@ -12,6 +12,7 @@ const page_address = array(
     'deatordr' => ['url'=>'deatordr','page'=>'deatordr'],
     //ADMIN
     'admin.dashboard' => ['url'=>'admin/','page'=>'admin/dashboard'],
+    'admin.listproduct' => ['url'=>'admin/listproduct','page'=>'admin/listproduct'],
 );
 $url;
 foreach (page_address as $key => $value) {
