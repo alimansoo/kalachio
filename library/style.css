@@ -1422,7 +1422,7 @@ input[type="range"]:focus::-moz-range-thumb {
 }
 
 .snipper-secondary {
-  border-color: #ececec;
+  border-color: gray;
 }
 
 .snipper-grow {
@@ -1449,7 +1449,7 @@ input[type="range"]:focus::-moz-range-thumb {
 }
 
 .snipper-grow.snipper-secondary {
-  background-color: #ececec;
+  background-color: gray;
 }
 
 .note {

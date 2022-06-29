@@ -28,7 +28,7 @@
         border-color: $info-color;
     }
     &-secondary{
-        border-color: $secondary-color;
+        border-color: gray;
     }
     
     &-grow{
@@ -48,7 +48,7 @@
                 background-color: $danger-color;
             }
             &-secondary{
-                background-color: $secondary-color;
+                background-color: gray;
             }
         }
     }

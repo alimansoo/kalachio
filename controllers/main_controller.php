@@ -23,29 +23,32 @@ foreach (page_address as $key => $value) {
     }
 }
 $page = $url['page'];
-$maincontent = file_get_contents(Template::IncludePath("page/".$page));
-if (substr($page,0,5)==="admin") {
-    $navbar = file_get_contents(Template::IncludePath("adminNavbar"));
-    $sidebar = file_get_contents(Template::IncludePath("adminSidebar"));
-    $page_content = $navbar.$sidebar.$maincontent ;
-}else {
-    $festival = file_get_contents(Template::IncludePath("festival"));
-    $header = file_get_contents(Template::IncludePath("header"));
-    $navbar = file_get_contents(Template::IncludePath("navbar"));
-    $sidebar = file_get_contents(Template::IncludePath("sidebar"));
-    $footer = file_get_contents(Template::IncludePath("footer"));
-    $page_content = 
-        $festival 
-        . $header 
-        . $navbar 
-        . $sidebar 
-        . $maincontent 
-        . $footer ;
-}
+Template::Include("page/".$page."data");
+$page = array("maintemplate"=>file_get_contents(Template::IncludePath("page/".$page)),"data"=>RenderData());
+echo json_encode($page);
+// $maincontent = file_get_contents(Template::IncludePath("page/".$page));
+// if (substr($page,0,5)==="admin") {
+//     $navbar = file_get_contents(Template::IncludePath("adminNavbar"));
+//     $sidebar = file_get_contents(Template::IncludePath("adminSidebar"));
+//     $page_content = $navbar.$sidebar.$maincontent ;
+// }else {
+//     $festival = file_get_contents(Template::IncludePath("festival"));
+//     $header = file_get_contents(Template::IncludePath("header"));
+//     $navbar = file_get_contents(Template::IncludePath("navbar"));
+//     $sidebar = file_get_contents(Template::IncludePath("sidebar"));
+//     $footer = file_get_contents(Template::IncludePath("footer"));
+//     $page_content = 
+//         $festival 
+//         . $header 
+//         . $navbar 
+//         . $sidebar 
+//         . $maincontent 
+//         . $footer ;
+// }
 
-$array = array(
-    "Title"=>"کالاچیو",
-    "content"=>$page_content
-);
+// $array = array(
+//     "Title"=>"کالاچیو",
+//     "content"=>$page_content
+// );
 
-echo json_encode($array);
+// echo json_encode($array);
