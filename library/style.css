@@ -682,6 +682,7 @@ a.btn {
       -ms-flex-direction: column;
           flex-direction: column;
   margin: 0 4px;
+  min-width: 42vw;
 }
 
 .small-card_body {
@@ -704,6 +705,20 @@ a.btn {
 .small-card_body_curent {
   color: gray;
   text-decoration: line-through;
+}
+
+/* Tablet */
+@media only screen and (min-width: 540px) {
+  .small-card {
+    min-width: 20vw;
+  }
+}
+
+/* Desktop */
+@media only screen and (min-width: 1000px) {
+  .small-card {
+    min-width: 15vw;
+  }
 }
 
 .m-0 {
@@ -1796,6 +1811,10 @@ input[type="range"]:focus::-moz-range-thumb {
   font-weight: bold;
 }
 
+.w-100vw {
+  width: 100vw;
+}
+
 .footer {
   width: 100%;
 }
@@ -1956,7 +1975,8 @@ input[type="range"]:focus::-moz-range-thumb {
 }
 
 .custom-scroll::-webkit-scrollbar {
-  width: 8px;
+  width: 12px;
+  height: 12px;
 }
 
 .custom-scroll::-webkit-scrollbar-track {

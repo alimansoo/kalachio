@@ -1,3 +1,5 @@
+// import "render";
+
 let mainTimer;
 let mainTimer2;
 let mainTimer3;
@@ -82,8 +84,16 @@ function RenderData() {
     .then(
         function (data) {
             if (data) {
+                var element;
+                var children;
                 for (const item in data) {
-                    document.getElementById(item).innerHTML = RenderSection(data[item]);
+                    element = document.getElementById(item);
+                    children = stringToHTML(RenderSection(data[item]));
+                    for (const child of children) {
+                        console.log(child);
+                        element.parentNode.insertBefore(child,element);
+                    }
+                    element.parentNode.removeChild(element);
                 }
                            
             }
@@ -130,12 +140,14 @@ function RenderSection(item) {
     }
     return Result;
 }
-// function RenderMain(data) {
-//     var mainTemplate = data.maintemplate;
+function stringToHTML (str) {
+	// if (support) {
+		var parser = new DOMParser();
+		var doc = parser.parseFromString(str, 'text/html');
+		return doc.body.childNodes;
+	// }
 
-//     var ArrayData = data.data;
-//     for (const item in ArrayData) {
-//         mainTemplate = mainTemplate.replace("{--"+item+"--}",RenderData(ArrayData[item]))
-//     }
-//     return mainTemplate;
-// }
+	// var dom = document.createElement('div');
+	// dom.innerHTML = str;
+	// return dom;
+};

@@ -50,6 +50,7 @@
     display: inline-flex;
     flex-direction: column;
     margin: 0 4px;
+    min-width: 42vw;
     &_body{
         display: flex;
         flex-direction: column;
@@ -63,5 +64,17 @@
             color: gray;
             text-decoration: line-through;
         }
+    }
+}
+/* Tablet */
+@media only screen and (min-width:540px)  {
+    .small-card{
+        min-width: 20vw;
+    }
+}
+/* Desktop */
+@media only screen and (min-width:1000px) {
+    .small-card{
+        min-width: 15vw;
     }
 }

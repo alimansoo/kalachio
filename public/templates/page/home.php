@@ -10,7 +10,7 @@
         {sm_info}
     </div>
     <div class="row">
-        <div class="bg-primary text-white p-all-1">
+        <div class="bg-primary text-white p-all-1 ov-x w-100vw custom-scroll">
             <h3>شگفت انگیز</h3>
             <div class="d-flex">
                 {small_card}

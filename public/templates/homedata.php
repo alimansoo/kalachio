@@ -116,19 +116,31 @@ function RenderData()
                     "curentprice"=>"1,500,000",
                 ],
                 [
-                    "productimg"=>"img/p4.jpg",
-                    "percent"=>"20",
-                    "newprice"=>"1,000,000",
-                    "curentprice"=>"1,500,000",
-                ],
-                [
-                    "productimg"=>"img/p5.jpg",
-                    "percent"=>"20",
-                    "newprice"=>"1,000,000",
-                    "curentprice"=>"1,500,000",
-                ],
-                [
                     "productimg"=>"img/p6.jpg",
+                    "percent"=>"20",
+                    "newprice"=>"1,000,000",
+                    "curentprice"=>"1,500,000",
+                ],
+                [
+                    "productimg"=>"img/p7.jpg",
+                    "percent"=>"20",
+                    "newprice"=>"1,000,000",
+                    "curentprice"=>"1,500,000",
+                ],
+                [
+                    "productimg"=>"img/p8.jpg",
+                    "percent"=>"20",
+                    "newprice"=>"1,000,000",
+                    "curentprice"=>"1,500,000",
+                ],
+                [
+                    "productimg"=>"img/p9.jpg",
+                    "percent"=>"20",
+                    "newprice"=>"1,000,000",
+                    "curentprice"=>"1,500,000",
+                ],
+                [
+                    "productimg"=>"img/p10.jpg",
                     "percent"=>"20",
                     "newprice"=>"1,000,000",
                     "curentprice"=>"1,500,000",
