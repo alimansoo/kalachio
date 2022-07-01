@@ -1,4 +1,4 @@
-<main class="content p1 d-flex justify-center">
+<section class="content p1 d-flex justify-center">
     <section class="auth-box bg-white">
         <h5 class="auth-box_title">ورود به کالاچیو</h5>
         <div class="form-outline mb-4">
@@ -7,4 +7,4 @@
         </div>
         <button class="btn btn-primary block-btn">ادامه</button>
     </section>
-</main>
+</section>

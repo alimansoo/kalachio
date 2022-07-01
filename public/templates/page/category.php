@@ -1,4 +1,4 @@
-<main class="content p1 d-flex gap-4">
+<section class="content p1 d-flex gap-4">
     <div class="d-grid col-lg-6 col-md-3 col-sm-2 gap_4 mb-4">
         <a href="" class="category-card">
             <img src="img/c1.jpg" alt="" class="category-card_img">
@@ -25,4 +25,4 @@
             <div class="category-card_title"> پوشاک بانوان</div>
         </a>
     </div>
-</main>
+</section>

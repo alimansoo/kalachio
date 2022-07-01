@@ -14,7 +14,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body class="custom-scroll">
-        <input type="hidden" id="url" name="page" value="<?php echo $request;?>">
+        <input type="hidden" id="url" name="page" value="<?php echo $PageName;?>">
         <section id="content">
             <div class="snipper snipper-grow snipper-secondary c-h-center"></div>
         </section>

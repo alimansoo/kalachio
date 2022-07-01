@@ -1,4 +1,4 @@
-<main class="content p1">
+<section class="content p1">
     <section class="grid-display col-sm-1 .col-md-1 col-lg-3-product-view productView">
             <section class="productView_image">
                 <img src="img/p1.jpg" width="90%" alt="" class="image">
@@ -58,4 +58,4 @@
                 <input type="submit" value="ثبت نظر" class="btn btn-primary">
             </form>
         </section>
-</main>
+</section>

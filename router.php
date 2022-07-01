@@ -1,21 +1,26 @@
 <?php
 const controllers_rout = array(
-    'view' => ['url'=>'','controller'=>'renderpage.php'], 
-    'controller' => ['url'=>'b/','controller'=>'main_controller.php'],
-    'action' => ['url'=>'a/','controller'=>'action_controller.php'],
+    'view' => ['url'=>'','controller'=>'view_controller.php'], 
+    'main' => ['url'=>'b','controller'=>'main_controller.php'],
+    'action' => ['url'=>'a','controller'=>'action_controller.php'],
+    'structor' => ['url'=>'s','controller'=>'structor_controller.php'],
+    'data' => ['url'=>'d','controller'=>'data_controller.php'],
 );
 
 $request = $_SERVER['REQUEST_SCHEME'].'://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
 $request = str_replace(SITE_URL,'',$request);
-if (strpos($request,"b/") !== false) {
-    $request = substr($request,2);
-    include "controllers/main_controller.php";
-}elseif (strpos($request,"a/") !== false) {
-    $request = substr($request,2);
-    include "controllers/action_controller.php";
-}else{
-    if ($request === "") {
-        $request = "home";
+
+$controller = '';
+$requestData = explode("/",$request);
+foreach (controllers_rout as $key => $value) {
+    if ($requestData[0] == $value['url']) {
+        $request = str_replace($value['url'].'/',"",$request);
+        $controller = $value['controller'];
+        break;
     }
-    include "controllers/render_controller.php";
 }
+if ($controller === '') {
+    $controller = controllers_rout['view']['controller'];
+}
+
+include "controllers/".$controller;
