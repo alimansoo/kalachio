@@ -18,7 +18,7 @@
         <section id="content">
             <div class="snipper snipper-grow snipper-secondary c-h-center"></div>
         </section>
-        <script src="http://localhost/KalaChio/js/script.js"></script>
+        <script type="module" src="http://localhost/KalaChio/js/script.js"></script>
         <script src="https://kit.fontawesome.com/864251d15b.js" crossorigin="anonymous"></script>
         <!-- <script src="library/js/alert.js"></script> -->
         <script src="http://localhost/KalaChio/library/js/sidebar.js"></script>

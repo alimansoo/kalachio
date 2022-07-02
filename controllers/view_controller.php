@@ -7,6 +7,7 @@ const address = array(
     'pcategory' => 'pcategory',
     'product' => 'product',
     'cart' => 'cart',
+    //UserPanel
     'userpanel' => 'userpanel',
     'myorders' => 'myorders',
     'deatordr' => 'deatordr',

@@ -2,10 +2,10 @@
 const datas = array(
     'home' => "homedata",
     'login' => "login",
-    'category' => "normal",
-    'pcategory' => "normal",
+    'category' => "categorydata",
+    'pcategory' => "productdata",
     'product' => "normal",
-    'cart' => "normal",
+    'cart' => "cartdata",
     'userpanel' => "normal",
     'myorders' => "normal",
     'deatordr' => "normal",

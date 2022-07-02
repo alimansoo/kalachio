@@ -54,7 +54,7 @@ function RenderMain() {
                     substring = template.substring(startIndex,endIndex+1);
                     id = substring.replace("{","");
                     id = id.replace("}","");
-                    spiner = '<div id="'+id+'"><div class="snipper snipper-grow snipper-secondary w-center"></div></div>';
+                    spiner = '<div id="'+id+'" class="snipper snipper-grow snipper-secondary w-center"></div>';
                     template = template.replace(substring,spiner);
 
                     
@@ -75,6 +75,7 @@ function RenderMain() {
 }
 function RenderData() {
     let url = document.getElementById("url").value;
+    // console.log("http://localhost/KalaChio/d/"+url);
     fetch("http://localhost/KalaChio/d/"+url)
     .then(
         function (response) {
