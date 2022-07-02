@@ -199,7 +199,11 @@ function ajaxWorker() {
     for (const element of elements) {
         element.addEventListener('click',ajaxmainEvent);
     }
-    
+
+    var forms = document.querySelectorAll('.ajaxForm');
+    for (const form of forms) {
+        form.addEventListener('submit',formEvent);
+    }
 }
 function ajaxmainEvent(e) {
     e.preventDefault();
@@ -210,6 +214,35 @@ function ajaxmainEvent(e) {
     mainTimer = setInterval(function () {
         Initial(url)
     },500);
+}
+function formEvent(e) {
+    e.preventDefault();
+    var formData = new FormData();
+    var Inputs = e.target.querySelectorAll("input:not([type='submit'])");
+    for (const input of Inputs) {
+        formData.append(input.name,input.value);
+        console.log(input.name,input.value);
+    }
+    var url = e.target.action;
+    fetch(url,{
+        method: "POST",
+        body: formData
+    })
+    .then(
+        function (response) {
+            return response.json();
+        }
+    )
+    .then(
+        function (data) {
+            console.log(data);
+        }
+    )
+    .catch(
+        function (error) {
+            console.log(error);
+        }
+    )
 }
 function getpageAddres(url) {
     return url.replace("http://localhost/KalaChio/","");
