@@ -1,8 +1,6 @@
-let timer2 = setInterval(Render,500)
-function Render() {
+function ApplySidebar() {
     let allHumbergerSidebar = document.querySelectorAll(".sidebar.h-sidebar");
     if (allHumbergerSidebar.length > 0) {
-        clearInterval(timer2);
         for (const humbergerSidebar of allHumbergerSidebar) {
             humbergerSidebar.innerHTML = '<div class="h-sidebar_back"></div>'+humbergerSidebar.innerHTML;
         }

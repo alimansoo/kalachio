@@ -1,9 +1,6 @@
-let timer = setInterval(sliderRender,500)
-
-function sliderRender() {
+function ApplySlider() {
     let allslider = document.querySelectorAll('.slider');
     if (allslider.length > 0) {
-        clearInterval(timer);
         for (const slider of allslider) {
             //set picturs number
             slider.getAttribute

@@ -1,30 +1,12 @@
-let timer3 = setInterval(inputRender,500)
-
-function inputRender() {
+function ApplyInputs() {
     let allInputs = document.querySelectorAll('.form-outline .form-controll');
     if (allInputs.length > 0) {
-        clearInterval(timer3);
         for (const Input of allInputs) {
             Input.addEventListener('focus',focusInput);
             Input.addEventListener('blur',blurInput);
         }
     }
-}
-
-
-function focusInput(e) {
-    let parent = this.closest('.form-outline');
-    parent.classList.add('focus');
-    parent.classList.add('active');
-}
-function blurInput(e) {
-    let parent = this.closest('.form-outline');
-    if (this.value === "") {
-        parent.classList.remove('focus');
-    }
-    parent.classList.remove('active');
-}
-window.addEventListener('load',function () {
+    
     if (allInputs.length > 0) {
         for (const Input of allInputs) {
             let parent = Input.closest('.form-outline');
@@ -41,7 +23,20 @@ window.addEventListener('load',function () {
             parent.querySelector('i.fa-eye').addEventListener('click',show_hide_password);
         }
     }
-})
+}
+
+function focusInput(e) {
+    let parent = this.closest('.form-outline');
+    parent.classList.add('focus');
+    parent.classList.add('active');
+}
+function blurInput(e) {
+    let parent = this.closest('.form-outline');
+    if (this.value === "") {
+        parent.classList.remove('focus');
+    }
+    parent.classList.remove('active');
+}
 function show_hide_password(e) {
     let parent = this.closest('.form-outline');
     let input = parent.querySelector('input');

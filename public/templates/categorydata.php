@@ -2,7 +2,7 @@
 function RenderData()
 {
     return [
-        "cart_item" => [
+        "category_card" => [
             "data"=>[
                 [
                     "imgSrc"=>"img/c1.jpg",

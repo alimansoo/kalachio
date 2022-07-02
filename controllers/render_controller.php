@@ -22,7 +22,7 @@
         <script src="https://kit.fontawesome.com/864251d15b.js" crossorigin="anonymous"></script>
         <!-- <script src="library/js/alert.js"></script> -->
         <script src="http://localhost/KalaChio/library/js/sidebar.js"></script>
-        <!-- <script src="library/js/dropdown.js"></script> -->
+        <script src="http://localhost/KalaChio/library/js/dropdown.js"></script>
         <!-- <script src="library/js/button.js"></script> -->
         <script src="http://localhost/KalaChio/library/js/slider.js"></script>
         <script src="http://localhost/KalaChio/library/js/input.js"></script>
