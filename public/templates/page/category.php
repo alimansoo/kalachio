@@ -1,6 +1,6 @@
-<section class="content p1 d-flex gap-4">
+<section class="content d-flex gap-4">
     <div class="">
-        <section class="d-grid col-lg-6 col-md-3 col-sm-2 gap_4 mb-4">
+        <section class="d-flex justify-center flex-wrap gap_4 mb-4 w-100vw">
             {category_card}
         </section>
         

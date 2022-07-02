@@ -1,7 +1,7 @@
 <?php
 
 const address = array(
-    'home' => '', 
+    'home' => 'home', 
     'login' => 'login',
     'category' => 'category',
     'pcategory' => 'pcategory',
@@ -18,6 +18,9 @@ const address = array(
 );
 
 $PageName = '';
+if ($request === '') {
+    $request = 'home';
+}
 foreach (address as $key => $value) {
     if ($request === $value) {
         $PageName = $key;

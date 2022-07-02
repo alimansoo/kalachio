@@ -383,6 +383,7 @@
       -ms-flex-direction: column;
           flex-direction: column;
   text-decoration: none;
+  max-width: 40vw;
 }
 
 .category-card_img {
@@ -393,6 +394,20 @@
   text-align: center;
   color: black;
   padding: .5rem 0;
+}
+
+/* Tablet */
+@media only screen and (min-width: 540px) {
+  .category-card {
+    max-width: 28vw;
+  }
+}
+
+/* Desktop */
+@media only screen and (min-width: 1000px) {
+  .category-card {
+    max-width: 15vw;
+  }
 }
 
 .w-center {

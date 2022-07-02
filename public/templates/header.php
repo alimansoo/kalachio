@@ -1,6 +1,6 @@
 <header class="navbar bg-light text-dark p-sticky d-flex justify-spacebetween z-index-1000" id="mainHeader">
         <div class="navbar_side d-flex align-content-center">
-            <a href="http://localhost/KalaChio/" class="link ajaxmainContent">
+            <a href="http://localhost/KalaChio/home" class="link ajaxmainContent">
                 <div class="navbar_brand text-primary txt-2x txt-bold">کالاچیو</div>
             </a>
         </div>

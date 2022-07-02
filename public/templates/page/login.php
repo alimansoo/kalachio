@@ -4,7 +4,7 @@
         <form action="" method="post">
             <div class="form-outline mb-4">
                 <input type="email" class="form-controll" name="email" id="email">
-                <label for="email" class="form-label">ایمیل</label>
+                <label for="email" class="form-label">ایمیل یا شماره تلفن</label>
             </div>
         </form>
         <button class="btn btn-primary block-btn">ادامه</button>
