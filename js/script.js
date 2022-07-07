@@ -1,14 +1,24 @@
 // import "render";
-
+// import "./event.js";
 let mainTimer;
 let mainTimer2;
 let mainTimer3;
-window.onload = function () {
-    mainTimer = setInterval(function () {
-        Initial();
-    },500);
+window.onload = async function (e) {
+    var href = window.location.href;
+    var pageAddress = getpageAddres(href);
+    var linkhref = getLinkUrl(pageAddress);
+
+    const response = await fetch(linkhref);
+    const json = await response.json();
+
+    for (const key in json.do) {
+        Dojson(json.do[key],e.target);
+    }
 }
-async function Initial(url = false) {
+function getLinkUrl(url) {
+    return 'http://localhost/KalaChio/l/'+url;
+}
+async function LoadPage(url = false) {
     var FullUrl = '';
     if (!url) {
         url = document.getElementById("url").value;
@@ -18,9 +28,13 @@ async function Initial(url = false) {
     }else{
         FullUrl = url;
     }
-    console.log(FullUrl);
 
     var data = await Fetch(FullUrl);
+    console.log(data);
+
+    changeWindowsHref("http://localhost/KalaChio/"+url);
+    changeWindowsTitle(data.title);
+
     let contentElement = document.getElementById("content");
     if (contentElement) {
         contentElement.innerHTML = RenderPage(data);
@@ -42,6 +56,7 @@ async function RenderMain(url = false) {
         FullUrl = url;
     }
     var data = await Fetch(FullUrl);
+
     let mainElement = document.querySelector("main.content");
     if (mainElement) {
         var template = data.template;
@@ -154,35 +169,40 @@ function string2HTML (str) {
 function getUrlPage() {
     return document.getElementById("url").value;
 }
+function changeWindowsHref(href) {
+    const stateObj = { foo: 'bar' };
+    history.pushState(stateObj, '', href);
+}
+function changeWindowsTitle(title) {
+    document.querySelector('title').innerText = title;
+}
+
+
 function ajaxWorker() {
-    var elements = document.querySelectorAll('.ajaxmainContent');
+    var elements = document.querySelectorAll('a');
     for (const element of elements) {
-        element.addEventListener('click',ajaxmainEvent);
+        if (element.href != "" && element.href != "#") {
+            element.addEventListener('click',linkEvent);
+        }
     }
 
-    var forms = document.querySelectorAll('.ajaxForm');
+    var forms = document.querySelectorAll('form');
     for (const form of forms) {
-        if (getUrlPage() != "login") {
-            form.addEventListener('submit',formEvent);
-        }
-        else{
-            form.addEventListener('submit',loginFormEvent);
-        }
-        
+        form.addEventListener('submit',formEvent);
     }
 }
-function ajaxmainEvent(e) {
+async function linkEvent(e) {
     e.preventDefault();
     var url = getpageAddres(this.href);
-    const stateObj = { foo: 'bar' };
-    history.pushState(stateObj, '', this.href);
-    document.getElementById('url').value = url;
 
-    mainTimer = setInterval(function () {
-        Initial(url)
-    },500);
+    url = getLinkUrl(url);
+
+    var data = await Fetch(url);
+    for (const key in data.do) {
+        await Dojson(data.do[key],e.target);
+    }
 }
-function formEvent(e) {
+async function formEvent(e) {
     e.preventDefault();
     var formData = new FormData();
     var Inputs = e.target.querySelectorAll("input:not([type='submit'])");
@@ -190,25 +210,40 @@ function formEvent(e) {
         formData.append(input.name,input.value);
     }
     var url = e.target.action;
-    fetch(url,{
-        method: "POST",
-        body: formData
-    })
-    .then(
-        function (response) {
-            return response.json();
-        }
-    )
-    .then(
-        function (data) {
-            console.log(data);
-        }
-    )
-    .catch(
-        function (error) {
-            console.log(error);
-        }
-    )
+    var data = await FetchPost(url,formData);
+    for (const key in data.do) {
+        await Dojson(data.do[key],e.target);
+    }
+}
+async function Dojson(json,element) {
+    switch (json.type) {
+        case 'loadpage':
+            mainTimer =  setInterval(function () {
+                LoadPage(json.name)
+            },100);
+            break;
+        case 'addElement':
+            var verifTimer = setInterval(() => {
+                var parent = document.querySelector(json.to);
+                if (parent) {
+                    clearInterval(verifTimer);
+                    var element = document.createElement(json.element.tagname);
+                    for (const key in json.element) {
+                        element.setAttribute(key,json.element[key])
+                    }
+                    parent.appendChild(element);
+                }
+            })
+            break;
+        case 'erorre':
+            var errore = document.createElement('div');
+            errore.className = 'alert alert-danger alert-icon  mb-4';
+            errore.innerText = json.message;
+            element.parentNode.insertBefore(errore,element);
+            break;
+        default:
+            break;
+    }
 }
 function getpageAddres(url) {
     return url.replace("http://localhost/KalaChio/","");
@@ -232,79 +267,6 @@ async function FetchPost(url,formData) {
     const json = await response.json();
     return json;
 }
-async function loginFormEvent(e) {
-    e.preventDefault();
-    var formData = new FormData();
-    var Input = e.target.querySelector("input[type='email']");
-    formData.append("email",Input.value);
-    var url = e.target.action;
-    var data = await FetchPost(url,formData)
-
-    if (data.available == true) {
-        document.querySelector('#url').value = 'verif';
-        mainTimer = setInterval(function () {
-            Initial("verif")
-        },100);
-        var verifTimer = setInterval(() => {
-            var passElement = document.querySelector('form.ajaxForm input[type="password"]');
-            if (passElement) {
-                var form = document.querySelector('form.ajaxForm');
-                var emailElement = document.createElement('input');
-                emailElement.type = 'hidden';
-                emailElement.name = 'email';
-                emailElement.id = 'email';
-                emailElement.value = Input.value;
-                form.appendChild(emailElement);
-                form.addEventListener('submit',async(e)=>{
-                    e.preventDefault();
-                    var formData = new FormData();
-                    var Inputemail = e.target.querySelector("input#email");
-                    var Inputpass = e.target.querySelector("input#password");
-                    formData.append('email',Inputemail.value);
-                    formData.append('password',Inputpass.value);
-                    console.log(e.target.action);
-                    const response = await fetch(e.target.action,{
-                        method: "POST",
-                        body: formData
-                    });
-                    const json = await response.json();
-                    if (json.available == true && json.login == true) {
-                        mainTimer = setInterval(function () {
-                            Initial("userpanel")
-                        },100);
-                        const stateObj = { foo: 'bar' };
-                        history.pushState(stateObj, '', 'http://localhost/KalaChio/userpanel');
-                    }
-                    else{
-                        alert = document.createElement('div');
-                        alert.className = "alert alert-danger alert-icon mb-4";
-                        alert.innerText = "رمز عبور اشتباه است.";
-                        e.target.parentNode.insertBefore(alert,e.target);
-                    }
-                })
-
-                clearInterval(verifTimer);
-            }
-        }, 200);
-    }else{
-        var alert = document.querySelector('div.alert')
-        if (alert) {
-            alert.parentNode.removeChild(alert);
-        }
-        
-        alert = document.createElement('div');
-        alert.className = "alert alert-danger alert-icon mb-4";
-        alert.innerText = "کاربری با این ایمیل وجود ندارد";
-        e.target.parentNode.insertBefore(alert,e.target);
-    }
-
-    
-}
-// function SendPostRequest(url,formData) {
-//     let Result={};
-    
-//     return Result;
-// }
 function ApplyScripts() {
     ajaxWorker();
     ApplySlider();

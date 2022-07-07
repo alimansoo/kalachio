@@ -1,10 +1,11 @@
 <?php
 const controllers_rout = array(
-    'view' => ['url'=>'','controller'=>'view_controller.php'], 
+    'view' => ['url'=>'','controller'=>'render_controller.php'], 
     'main' => ['url'=>'b','controller'=>'main_controller.php'],
     'action' => ['url'=>'a','controller'=>'action_controller.php'],
     'structor' => ['url'=>'s','controller'=>'structor_controller.php'],
     'data' => ['url'=>'d','controller'=>'data_controller.php'],
+    'link' => ['url'=>'l','controller'=>'link_controller.php'],
 );
 
 $request = $_SERVER['REQUEST_SCHEME'].'://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
@@ -21,6 +22,36 @@ foreach (controllers_rout as $key => $value) {
 }
 if ($controller === '') {
     $controller = controllers_rout['view']['controller'];
+}
+
+const address = array(
+    'home' => 'home', 
+    'login' => 'login',
+    'logout' => "logout",
+    'verif' => 'verif',
+    'category' => 'category',
+    'pcategory' => 'pcategory',
+    'product' => 'product',
+    'cart' => 'cart',
+    //UserPanel
+    'userpanel' => 'userpanel',
+    'myorders' => 'myorders',
+    'deatordr' => 'deatordr',
+    //ADMIN
+    'admin.dashboard' => 'admin/',
+    'admin.listproduct' => 'admin/listproduct',
+    'admin.listuser' => 'admin/listuser',
+);
+
+$PageName = '';
+if ($request === '') {
+    $request = 'home';
+}
+foreach (address as $key => $value) {
+    if ($request === $value) {
+        $PageName = $key;
+        break;
+    }
 }
 
 include "controllers/".$controller;

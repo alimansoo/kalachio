@@ -6,10 +6,6 @@
             <li class="sidebar_list_item"><i class='fas fa-bookmark'></i><a href="<?php echo Rout::full_url('userpanel.bookmarkproduct');?>">محصولات ذخیره شده</a></li>   
             <li class="sidebar_list_item"><i class='fas fa-comment'></i><a href="">نظرات من</a></li>   
             <li class="sidebar_list_item"><i class='fas fa-shopping-cart'></i><a href="<?php echo Rout::full_url('cart');?>">سبد خرید</a></li>   
-            <li class="sidebar_list_item"><i class='fas fa-sign-out-alt'></i><a href="http://localhost/KalaChio/logout">خروج</a></li>   
+            <li class="sidebar_list_item"><i class='fas fa-sign-out-alt'></i><a href="<?php echo Rout::full_url('logout');?>">خروج</a></li>   
         </ul>
     </aside>
-    <section class="content-box bg-white grid-lg-2to5 grid-sm-auto">
-        {userinfo}
-    </section>
-</section>
