@@ -2,6 +2,7 @@
 const structors = array(
     'home' => "normal",
     'login' => "login",
+    'verif' => "login",
     'category' => "normal",
     'pcategory' => "normal",
     'product' => "normal",

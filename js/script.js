@@ -8,43 +8,29 @@ window.onload = function () {
         Initial();
     },500);
 }
-function Initial(url = false) {
+async function Initial(url = false) {
     var FullUrl = '';
     if (!url) {
         url = document.getElementById("url").value;
     }
-
     if (!isURL(url)) {
         FullUrl = "http://localhost/KalaChio/s/"+url;
     }else{
         FullUrl = url;
     }
+    console.log(FullUrl);
 
-    fetch(FullUrl)
-    .then(
-        function (response) {
-            return response.json();
-        }
-    )
-    .then(
-        function (data) {
-            let contentElement = document.getElementById("content");
-            if (contentElement) {
-                contentElement.innerHTML = RenderPage(data);
-                mainTimer2 = setInterval(function () {
-                    RenderMain(url)
-                },500);
-            }
-            clearInterval(mainTimer);
-        }
-    )
-    .catch(
-        function (error) {
-            console.log(error);
-        }
-    )
+    var data = await Fetch(FullUrl);
+    let contentElement = document.getElementById("content");
+    if (contentElement) {
+        contentElement.innerHTML = RenderPage(data);
+        mainTimer2 = setInterval(function () {
+            RenderMain(url)
+        },500);
+    }
+    clearInterval(mainTimer);
 }
-function RenderMain(url = false) {
+async function RenderMain(url = false) {
     var FullUrl = '';
     if (!url) {
         url = document.getElementById("url").value;
@@ -55,38 +41,23 @@ function RenderMain(url = false) {
     }else{
         FullUrl = url;
     }
-    fetch(FullUrl)
-    .then(
-        function (response) {
-            return response.json();
+    var data = await Fetch(FullUrl);
+    let mainElement = document.querySelector("main.content");
+    if (mainElement) {
+        var template = data.template;
+        mainElement.innerHTML = ReplaceSection(template);
+        clearInterval(mainTimer2);
+        if (data.data) {
+            mainTimer3 = setInterval(function () {
+                RenderData(url)
+            },500);
         }
-    )
-    .then(
-        function (data) {
-            let mainElement = document.querySelector("main.content");
-            if (mainElement) {
-                var template = data.template;
-                mainElement.innerHTML = ReplaceSection(template);
-                clearInterval(mainTimer2);
-                if (data.data) {
-                    mainTimer3 = setInterval(function () {
-                        RenderData(url)
-                    },500);
-                }
-                else{
-                    ApplyScripts();
-                }
-            }
-            
+        else{
+            ApplyScripts();
         }
-    )
-    .catch(
-        function (error) {
-            console.log(error);
-        }
-    )
+    }
 }
-function RenderData(url = false) {
+async function RenderData(url = false) {
     var FullUrl = '';
     if (!url) {
         url = document.getElementById("url").value;
@@ -97,36 +68,22 @@ function RenderData(url = false) {
     }else{
         FullUrl = url;
     }
-    fetch(FullUrl)
-    .then(
-        function (response) {
-            return response.json();
-        }
-    )
-    .then(
-        function (data) {
-            if (data) {
-                var element;
-                var children;
-                for (const item in data) {
-                    element = document.getElementById(item);
-                    children = RenderSection(data[item]);
-                    for (const child of children) {
-                        element.parentNode.insertBefore(child,element);
-                    }
-                    element.parentNode.removeChild(element);
-                }
-                           
+    var data = await Fetch(FullUrl);
+    if (data) {
+        var element;
+        var children;
+        for (const item in data) {
+            element = document.getElementById(item);
+            children = RenderSection(data[item]);
+            for (const child of children) {
+                element.parentNode.insertBefore(child,element);
             }
-            clearInterval(mainTimer3);
-            ApplyScripts();
+            element.parentNode.removeChild(element);
         }
-    )
-    .catch(
-        function (error) {
-            console.log(error);
-        }
-    )
+                   
+    }
+    clearInterval(mainTimer3);
+    ApplyScripts();
 }
 function ReplaceSection(template) {
     var startIndex = 0;
@@ -194,6 +151,9 @@ function string2HTML (str) {
     var doc = parser.parseFromString(str, 'text/html');
     return doc.body.childNodes;
 };
+function getUrlPage() {
+    return document.getElementById("url").value;
+}
 function ajaxWorker() {
     var elements = document.querySelectorAll('.ajaxmainContent');
     for (const element of elements) {
@@ -202,7 +162,13 @@ function ajaxWorker() {
 
     var forms = document.querySelectorAll('.ajaxForm');
     for (const form of forms) {
-        form.addEventListener('submit',formEvent);
+        if (getUrlPage() != "login") {
+            form.addEventListener('submit',formEvent);
+        }
+        else{
+            form.addEventListener('submit',loginFormEvent);
+        }
+        
     }
 }
 function ajaxmainEvent(e) {
@@ -210,6 +176,7 @@ function ajaxmainEvent(e) {
     var url = getpageAddres(this.href);
     const stateObj = { foo: 'bar' };
     history.pushState(stateObj, '', this.href);
+    document.getElementById('url').value = url;
 
     mainTimer = setInterval(function () {
         Initial(url)
@@ -221,7 +188,6 @@ function formEvent(e) {
     var Inputs = e.target.querySelectorAll("input:not([type='submit'])");
     for (const input of Inputs) {
         formData.append(input.name,input.value);
-        console.log(input.name,input.value);
     }
     var url = e.target.action;
     fetch(url,{
@@ -253,6 +219,92 @@ function isURL(str) {
     }
     return false;
 }
+async function Fetch(url) {
+    const response = await fetch(url);
+    const json = await response.json();
+    return json;
+}
+async function FetchPost(url,formData) {
+    const response = await fetch(url,{
+        method: "POST",
+        body: formData
+    });
+    const json = await response.json();
+    return json;
+}
+async function loginFormEvent(e) {
+    e.preventDefault();
+    var formData = new FormData();
+    var Input = e.target.querySelector("input[type='email']");
+    formData.append("email",Input.value);
+    var url = e.target.action;
+    var data = await FetchPost(url,formData)
+
+    if (data.available == true) {
+        document.querySelector('#url').value = 'verif';
+        mainTimer = setInterval(function () {
+            Initial("verif")
+        },100);
+        var verifTimer = setInterval(() => {
+            var passElement = document.querySelector('form.ajaxForm input[type="password"]');
+            if (passElement) {
+                var form = document.querySelector('form.ajaxForm');
+                var emailElement = document.createElement('input');
+                emailElement.type = 'hidden';
+                emailElement.name = 'email';
+                emailElement.id = 'email';
+                emailElement.value = Input.value;
+                form.appendChild(emailElement);
+                form.addEventListener('submit',async(e)=>{
+                    e.preventDefault();
+                    var formData = new FormData();
+                    var Inputemail = e.target.querySelector("input#email");
+                    var Inputpass = e.target.querySelector("input#password");
+                    formData.append('email',Inputemail.value);
+                    formData.append('password',Inputpass.value);
+                    console.log(e.target.action);
+                    const response = await fetch(e.target.action,{
+                        method: "POST",
+                        body: formData
+                    });
+                    const json = await response.json();
+                    if (json.available == true && json.login == true) {
+                        mainTimer = setInterval(function () {
+                            Initial("userpanel")
+                        },100);
+                        const stateObj = { foo: 'bar' };
+                        history.pushState(stateObj, '', 'http://localhost/KalaChio/userpanel');
+                    }
+                    else{
+                        alert = document.createElement('div');
+                        alert.className = "alert alert-danger alert-icon mb-4";
+                        alert.innerText = "رمز عبور اشتباه است.";
+                        e.target.parentNode.insertBefore(alert,e.target);
+                    }
+                })
+
+                clearInterval(verifTimer);
+            }
+        }, 200);
+    }else{
+        var alert = document.querySelector('div.alert')
+        if (alert) {
+            alert.parentNode.removeChild(alert);
+        }
+        
+        alert = document.createElement('div');
+        alert.className = "alert alert-danger alert-icon mb-4";
+        alert.innerText = "کاربری با این ایمیل وجود ندارد";
+        e.target.parentNode.insertBefore(alert,e.target);
+    }
+
+    
+}
+// function SendPostRequest(url,formData) {
+//     let Result={};
+    
+//     return Result;
+// }
 function ApplyScripts() {
     ajaxWorker();
     ApplySlider();

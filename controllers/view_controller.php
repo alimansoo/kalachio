@@ -3,6 +3,7 @@
 const address = array(
     'home' => 'home', 
     'login' => 'login',
+    'verif' => 'verif',
     'category' => 'category',
     'pcategory' => 'pcategory',
     'product' => 'product',

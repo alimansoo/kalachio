@@ -10,19 +10,6 @@
         </ul>
     </aside>
     <section class="content-box bg-white grid-lg-2to5 grid-sm-auto">
-        <table class="table">
-            <tr class="cartitem h-fit p1">
-                <td class="item_key">نام کاربر:</td>
-                <td class="item_value">علی منصوری</td>
-            </tr>
-            <tr class="cartitem h-fit p1">
-                <td class="item_key">شهر محل سکونت:</td>
-                <td class="item_value">اصفهان</td>
-            </tr>
-            <tr class="cartitem h-fit p1">
-                <td class="item_key">ایمیل:</td>
-                <td class="item_value">alimansi1382@gmail.com</td>
-            </tr>
-        </table>
+        {userinfo}
     </section>
 </section>

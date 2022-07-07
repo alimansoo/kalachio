@@ -2,6 +2,7 @@
 const pages = array(
     'home' => ['template'=>'home','data'=>true],
     'login' => ['template'=>'login','data'=>false],
+    'verif' => ['template'=>'login2','data'=>false],
     'category' => ['template'=>'category','data'=>true],
     'pcategory' => ['template'=>'pcategory','data'=>true],
     'product' => ['template'=>'product','data'=>true],
