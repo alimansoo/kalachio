@@ -6,7 +6,7 @@ const links = array(
     'category' => "categorydata",
     'pcategory' => "productdata",
     'product' => "normal",
-    'cart' => "cartdata",
+    'cart' => "Cart",
     'userpanel' => "UserPanel",
     'myorders' => "normal",
     'deatordr' => "normal",
@@ -160,5 +160,29 @@ function Logout()
             ]
         ]
     ];
+    return $Result;
+}
+function Cart()
+{
+    $Result = [
+        'status'=>220,
+        'errore'=>0,
+        'do'=>[]
+    ];
+    if (isset($_SESSION['id'])) {
+        $Result['do']=[
+            [
+                'type'=>'loadpage',
+                'name'=>'cart'
+            ]
+        ];
+    }else{
+        $Result['do']=[
+            [
+                'type'=>'loadpage',
+                'name'=>'login'
+            ]
+        ];
+    }
     return $Result;
 }
