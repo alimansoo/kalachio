@@ -165,7 +165,7 @@ function string2HTML (str) {
     var parser = new DOMParser();
     var doc = parser.parseFromString(str, 'text/html');
     return doc.body.childNodes;
-};
+}
 function getUrlPage() {
     return document.getElementById("url").value;
 }

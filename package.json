@@ -5,11 +5,21 @@
   "name": "frontend",
   "version": "1.0.0",
   "main": "index.js",
-  "devDependencies": {},
+  "devDependencies": {
+    "eslint": "^8.19.0"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alimansoo/kalachio.git"
+  },
+  "bugs": {
+    "url": "https://github.com/alimansoo/kalachio/issues"
+  },
+  "homepage": "https://github.com/alimansoo/kalachio#readme",
   "description": ""
 }

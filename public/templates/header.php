@@ -26,7 +26,7 @@
                 
                 <a href="http://localhost/KalaChio/cart" class="link ajaxmainContent">
                     <i class="fas fas fa-shopping-cart fa-2x pr-1 pos-rel">
-                        <span class="badge small-badge badge-top-right badge-pill badge-danger pos-abs">1</span>
+                        <span class="badge small-badge badge-top-right badge-pill badge-danger pos-abs">0</span>
                     </i>
                 </a>
             </div>
