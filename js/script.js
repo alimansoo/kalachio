@@ -3,7 +3,7 @@
 let mainTimer;
 let mainTimer2;
 let mainTimer3;
-window.onload = async function (e) {
+window.onload = async function (e) { 
     var href = window.location.href;
     var pageAddress = getpageAddres(href);
     var linkhref = getLinkUrl(pageAddress);
@@ -30,7 +30,7 @@ async function LoadPage(url = false) {
     }
 
     var data = await Fetch(FullUrl);
-    console.log(data);
+    // console.log(data);
 
     changeWindowsHref("http://localhost/KalaChio/"+url);
     changeWindowsTitle(data.title);
@@ -117,14 +117,14 @@ function ReplaceSection(template) {
     }
     return template;
 }
-function json2array(json){
-    var result = [];
-    var keys = Object.keys(json);
-    keys.forEach(function(key){
-        result.push(json[key]);
-    });
-    return result;
-}
+// function json2array(json){
+//     var result = [];
+//     var keys = Object.keys(json);
+//     keys.forEach(function(key){
+//         result.push(json[key]);
+//     });
+//     return result;
+// }
 function RenderPage(data) {
     var Structor = data.structor.split(' ');
     var Result="";
@@ -166,9 +166,6 @@ function string2HTML (str) {
     var doc = parser.parseFromString(str, 'text/html');
     return doc.body.childNodes;
 }
-function getUrlPage() {
-    return document.getElementById("url").value;
-}
 function changeWindowsHref(href) {
     const stateObj = { foo: 'bar' };
     history.pushState(stateObj, '', href);
@@ -176,8 +173,6 @@ function changeWindowsHref(href) {
 function changeWindowsTitle(title) {
     document.querySelector('title').innerText = title;
 }
-
-
 function ajaxWorker() {
     var elements = document.querySelectorAll('a');
     for (const element of elements) {
@@ -209,7 +204,8 @@ async function formEvent(e) {
     for (const input of Inputs) {
         formData.append(input.name,input.value);
     }
-    var url = e.target.action;
+    var url = getpageAddres(e.target.action);
+    url = getLinkUrl(url);
     var data = await FetchPost(url,formData);
     for (const key in data.do) {
         await Dojson(data.do[key],e.target);
@@ -237,9 +233,27 @@ async function Dojson(json,element) {
             break;
         case 'erorre':
             var errore = document.createElement('div');
+            var parentNode = element.parentNode;
+            //remove befor alert
+            var alertElement = parentNode.querySelector('.alert');
+            if (alertElement) {
+                parentNode.removeChild(alertElement);
+            }
             errore.className = 'alert alert-danger alert-icon  mb-4';
             errore.innerText = json.message;
             element.parentNode.insertBefore(errore,element);
+            break;
+        case "alerterrore":
+            iziToast.error({
+                title: 'خطا',
+                message: json.message
+            });
+            break;
+        case "alertsuccess":
+            iziToast.success({
+                title: 'پیام موفقیت امیز',
+                message: json.message
+            });
             break;
         default:
             break;

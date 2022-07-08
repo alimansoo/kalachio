@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "izitoast": "^1.4.0",
     "node-sass": "^7.0.1"
   },
   "name": "frontend",

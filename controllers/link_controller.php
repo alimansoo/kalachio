@@ -38,6 +38,23 @@ function Login()
     define('login', 1);
     define('load', 0);
 
+    if (isset($_SESSION['id'])) {
+        return [
+            'status'=>220,
+            'errore'=>0,
+            'do'=>[
+                [
+                    'type'=>'loadpage',
+                    'name'=>'userpanel'
+                ],
+                [
+                    'type'=>'alertsuccess',
+                    'message'=>'به پنل کاربری خوش امدید!!'
+                ]
+            ]
+        ];
+    }
+
     $Result = [
         'status'=>220,
         'errore'=>0,
@@ -104,6 +121,10 @@ function Login()
                     [
                         'type'=>'loadpage',
                         'name'=>'userpanel'
+                    ],
+                    [
+                        'type'=>'alertsuccess',
+                        'message'=>'به پنل کاربری خوش امدید!!'
                     ]
                 ];
                 foreach ($resultdb as $key => $value) {
@@ -132,6 +153,10 @@ function UserPanel()
             [
                 'type'=>'loadpage',
                 'name'=>'login'
+            ],
+            [
+                'type'=>'alerterrore',
+                'message'=>'شما هنوز وارد سایت نشده اید!!'
             ]
         ]
     ];
@@ -181,6 +206,10 @@ function Cart()
             [
                 'type'=>'loadpage',
                 'name'=>'login'
+            ],
+            [
+                'type'=>'alerterrore',
+                'message'=>'شما هنوز وارد سایت نشده اید!!'
             ]
         ];
     }
