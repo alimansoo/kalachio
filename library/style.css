@@ -668,6 +668,10 @@ a.btn {
   border-top: 1px solid #ececec;
 }
 
+.card a {
+  text-decoration: none;
+}
+
 .small-card {
   background-color: white;
   border-radius: 8px;

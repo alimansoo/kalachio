@@ -4,7 +4,7 @@ const structors = array(
     'login' => ['structor'=>"login","title"=>"صفحه ورود"],
     'verif' => ['structor'=>"login","title"=>"ورود رمز"],
     'category' => ['structor'=>"normal","title"=>"دسته بندی ها"],
-    'pcategory' => ['structor'=>"normal","title"=>"محصولات"],
+    'search' => ['structor'=>"normal","title"=>"محصولات"],
     'product' => ['structor'=>"normal","title"=>"مشخصات محصول"],
     'cart' => ['structor'=>"normal","title"=>"سبد خرید"],
     'userpanel' => ['structor'=>"normal","title"=>"پنل کاربری"],

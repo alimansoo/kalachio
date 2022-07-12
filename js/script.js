@@ -3,6 +3,19 @@
 let mainTimer;
 let mainTimer2;
 let mainTimer3;
+
+window.addEventListener('popstate', async function(e) {
+    var href = window.location.href;
+    var pageAddress = getpageAddres(href);
+    var linkhref = getLinkUrl(pageAddress);
+
+    const response = await fetch(linkhref);
+    const json = await response.json();
+
+    for (const key in json.do) {
+        Dojson(json.do[key],e.target);
+    }
+}, false);
 window.onload = async function (e) { 
     var href = window.location.href;
     var pageAddress = getpageAddres(href);
@@ -83,6 +96,7 @@ async function RenderData(url = false) {
     }else{
         FullUrl = url;
     }
+    console.log(FullUrl);
     var data = await Fetch(FullUrl);
     if (data) {
         var element;
@@ -117,14 +131,6 @@ function ReplaceSection(template) {
     }
     return template;
 }
-// function json2array(json){
-//     var result = [];
-//     var keys = Object.keys(json);
-//     keys.forEach(function(key){
-//         result.push(json[key]);
-//     });
-//     return result;
-// }
 function RenderPage(data) {
     var Structor = data.structor.split(' ');
     var Result="";
@@ -146,15 +152,25 @@ function RenderSection(item) {
                     ReplaceData(template,dataitem)
                 )
             );
-        }
-        
+        }    
     }
     return Result;
 }
 function ReplaceData(template,data) {
+    var startIndex = 0;
+    var endIndex = 0;
+    var substring ='';
+    var key ='';
     for (const dataitem in data) {
-        var key = "{-"+dataitem+"-}";
-        template = template.replace(key, data[dataitem]);
+        while (template.indexOf('{-',endIndex) != -1) {
+            startIndex = template.indexOf('{-',endIndex); 
+            endIndex = template.indexOf('-}',startIndex+1);
+            substring = template.substring(startIndex,endIndex+2);
+            
+            key = substring.replace("{-","");
+            key = key.replace("-}","");
+            template = template.replace(substring,data[key]);
+        }
     }
     return template;
 }
@@ -191,7 +207,7 @@ async function linkEvent(e) {
     var url = getpageAddres(this.href);
 
     url = getLinkUrl(url);
-
+    console.log(url);
     var data = await Fetch(url);
     for (const key in data.do) {
         await Dojson(data.do[key],e.target);
@@ -254,6 +270,22 @@ async function Dojson(json,element) {
                 title: 'پیام موفقیت امیز',
                 message: json.message
             });
+            break;
+        case "alertwarning":
+            iziToast.warning({
+                title: 'هشدار',
+                message: json.message
+            });
+            break;
+        case "changecartnumber":
+            document.querySelector('#cartnumber').innerText = json.value;
+            break;
+        case "changetargettext":
+            element.innerText = json.text;
+            break;
+        case "deletecartitem":
+            var cartitem = element.closest('.cart-list_item');
+            cartitem.parentNode.removeChild(cartitem);
             break;
         default:
             break;

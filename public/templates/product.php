@@ -1,8 +1,10 @@
-<a href="#" class="card">
+<div class="card">
     <img src="{-imgSrc-}" class="card_img-top" alt="">
     <div class="card_body">
-        <h5 class="card_title">{-title-}</h5>
+        <a href="http://localhost/KalaChio/product?id={-id-}">
+            <h5 class="card_title">{-title-}</h5>
+        </a>
         <p class="card_text">{-price-}</p>
-        <button type="button" class="btn btn-corner btn-outline btn-primary">افرودن به سبد خريد</button>
+        <a href="http://localhost/KalaChio/adcart?product={-id-}" class="btn btn-corner btn-outline btn-primary">افزودن به سبد خريد</a>
     </div>
-</a>
+</div>

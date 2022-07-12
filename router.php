@@ -10,6 +10,11 @@ const controllers_rout = array(
 
 $request = $_SERVER['REQUEST_SCHEME'].'://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
 $request = str_replace(SITE_URL,'',$request);
+$qustnIndex = strpos($request,"?");
+if($qustnIndex){
+    $request = substr($request,0,$qustnIndex);
+}
+// echo $request;
 
 $controller = '';
 $requestData = explode("/",$request);
@@ -30,9 +35,11 @@ const address = array(
     'logout' => "logout",
     'verif' => 'verif',
     'category' => 'category',
-    'pcategory' => 'pcategory',
+    'search' => 'search',
     'product' => 'product',
     'cart' => 'cart',
+    'addcart' => 'adcart',
+    'removecart' => 'rmcart',
     //UserPanel
     'userpanel' => 'userpanel',
     'myorders' => 'myorders',

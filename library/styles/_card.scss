@@ -40,6 +40,9 @@
     &_footer{
         border-top: 1px solid $secondary-color;
     }
+    a{
+        text-decoration: none;
+    }
 }
 .small-card{
     background-color: white;

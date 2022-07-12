@@ -4,7 +4,7 @@ const pages = array(
     'login' => ['template'=>'login','data'=>false],
     'verif' => ['template'=>'login2','data'=>false],
     'category' => ['template'=>'category','data'=>true],
-    'pcategory' => ['template'=>'pcategory','data'=>true],
+    'search' => ['template'=>'search','data'=>true],
     'product' => ['template'=>'product','data'=>true],
     'cart' => ['template'=>'cart','data'=>true],
     'userpanel' => ['template'=>'userpanel','data'=>true],

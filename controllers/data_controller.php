@@ -2,9 +2,9 @@
 const datas = array(
     'home' => "homeData",
     'category' => "categoryData",
-    'pcategory' => "productData",
-    'product' => "normal",
-    'cart' => "cartdata",
+    'search' => "searchData",
+    'product' => "productData",
+    'cart' => "cartData",
     'userpanel' => "usrpnlData",
     'myorders' => "normal",
     'deatordr' => "normal",
@@ -128,14 +128,26 @@ function categoryData()
     ];
     return $Result;
 }
-function productData()
+function searchData()
 {
     $Result = [];
+    $where = [];
+    if (isset($_GET['category'])) {
+        $where['category']=$_GET['category'];
+    }
+    
     $db = new db('localhost','root','','kalachio');
-    $resultdb = $db->query(
-        QueryBuilder::select("products","*")
-    )->fetchAll();
-    $Result['product'] =
+    if ($where === []) {
+        $resultdb = $db->query(
+            QueryBuilder::select("products","*")
+        )->fetchAll();
+    }else{
+        $resultdb = $db->query(
+            QueryBuilder::select("products","*",$where)
+        )->fetchAll();
+    }
+    
+    $Result['product']=
     [
         'data' => $resultdb,
         'template' => file_get_contents(Template::IncludePath("product"))
@@ -148,14 +160,84 @@ function usrpnlData()
     $Result['userinfo'] = [
         'data'=>[
             [
-            'fullname'=>$_SESSION['name'],
-            'phone'=>$_SESSION['phone'],
-            'email'=>$_SESSION['email'],
+                'fullname'=>$_SESSION['name'],
+                'phone'=>$_SESSION['phone'],
+                'email'=>$_SESSION['email'],
             ]
         ],
         'template'=>file_get_contents(Template::IncludePath("userinfo"))
     ];
     return $Result;
 }
+function productData()
+{
+    $Result = [];
+    $where = [];
+    if (isset($_GET['id'])) {
+        $where['id']=$_GET['id'];
+    }
+    
+    $db = new db('localhost','root','','kalachio');
+    if ($where === []) {
+        $productInfo = $db->query(
+            QueryBuilder::select("products","*")
+        )->fetchArray();
+    }else{
+        $productInfo = $db->query(
+            QueryBuilder::select("products","*",$where)
+        )->fetchArray();
+    }
+
+    $comments = $db->query(
+        QueryBuilder::select("comments","*",['pid'=>$_GET['id']])
+    )->fetchAll();
+
+    $Result['productinfo']=
+    [
+        'data' => [$productInfo],
+        'template' => file_get_contents(Template::IncludePath("productpage"))
+    ];
+    if (count($comments) < 1) {
+        $Result['comments']=[
+            'data' => [[]],
+            'template' => file_get_contents(Template::IncludePath("nocomment"))
+        ];
+    }
+    else{
+        $Result['comments']=[
+            'data' => $comments,
+            'template' => file_get_contents(Template::IncludePath("comment"))
+        ];
+    }
+    
+    return $Result;
+}
+function cartData(){
+    $db = new db('localhost','root','','kalachio');
+    $cartitems = $db->query(
+        QueryBuilder::select("carts",'*',['uid'=>$_SESSION['id']],["id"=>"DESC"])
+    )->fetchAll();
+    $allprice = 0;
+    foreach ($cartitems as $key => $value) {
+        $product = $db->query(
+            QueryBuilder::select("products",'*',['id'=>$value['pid']])
+        )->fetchArray();
+        foreach ($product as $pkey => $pvalue) {
+            $value[$pkey] = $pvalue;
+        }
+        $cartitems[$key] = $value;
+        $allprice += (int)$value['price'];
+    }
+    $Result['cart_item']=[
+        'data' => $cartitems,
+        'template' => file_get_contents(Template::IncludePath("cart_item"))
+    ];
+    $Result['cart_content']=[
+        'data' => [["allprice"=>$allprice,"discount"=>"0"]],
+        'template' => file_get_contents(Template::IncludePath("cart_content"))
+    ];
+    return $Result;
+}
+
 $fun = datas[$request];
 echo json_encode($fun());

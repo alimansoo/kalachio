@@ -3,10 +3,12 @@ const links = array(
     'home' => "Home",
     'login' => "Login",
     'logout' => "Logout",
-    'category' => "categorydata",
-    'pcategory' => "productdata",
-    'product' => "normal",
+    'category' => "Category",
+    'search' => "searchProduct",
+    'product' => "Product",
     'cart' => "Cart",
+    'addcart' => "AddCart",
+    'removecart' => "RemoveCart",
     'userpanel' => "UserPanel",
     'myorders' => "normal",
     'deatordr' => "normal",
@@ -214,4 +216,153 @@ function Cart()
         ];
     }
     return $Result;
+}
+function Category()
+{
+    $Result=[
+        'status'=>220,
+        'errore'=>0,
+        "do"=>[
+            [
+                'type'=>'loadpage',
+                'name'=>'category'
+            ]
+        ]
+    ];
+    return $Result;
+}
+function searchProduct(){
+    $PageName = "search";
+    if (isset($_GET['category'])) {
+        $PageName .= '?category='.$_GET['category'];
+    }
+    $Result=[
+        'status'=>220,
+        'errore'=>1,
+        "do"=>[
+            [
+                'type'=>'loadpage',
+                'name'=>$PageName
+            ]
+        ]
+    ];
+    return $Result;
+}
+function Product()
+{
+    $PageName = "product";
+    if (isset($_GET['id'])) {
+        $PageName .= '?id='.$_GET['id'];
+    }
+    else{
+        $PageName = 'home';
+    }
+    $Result=[
+        'status'=>220,
+        'errore'=>1,
+        "do"=>[
+            [
+                'type'=>'loadpage',
+                'name'=>$PageName
+            ]
+        ]
+    ];
+    return $Result;
+}
+function AddCart()
+{
+    if (!isset($_SESSION['id'])) {
+        return [
+            'status'=>220,
+            'errore'=>1,
+            "do"=>[
+                [
+                    'type'=>'loadpage',
+                    'name'=>'login'
+                ]
+            ]
+        ];
+    }
+    $pid = $_GET['product'];
+    $db = new db('localhost','root','','kalachio');
+    $select = $db->query(
+        QueryBuilder::select("carts",'*',['uid'=>$_SESSION['id'],'pid'=>$_GET['product']])
+    )->fetchArray();
+    if (count($select)<1) {
+        $productInfo = $db->query(
+            QueryBuilder::insert("carts",['uid'=>$_SESSION['id'],'pid'=>$_GET['product'],'qty'=>1])
+        );
+        return [
+            'status'=>220,
+            'errore'=>1,
+            "do"=>[
+                [
+                    'type'=>'changecartnumber',
+                    'value'=>cart_number($_GET['product'],$_SESSION['id'])
+                ],
+                [
+                    'type'=>'alertsuccess',
+                    'message'=>'محصول به سبد شما اضافه شد!!'
+                ],
+                [
+                    'type'=>'changetargettext',
+                    'text'=>'حذف از سبد'
+                ]
+            ]
+        ];
+    }
+
+    $select = $db->query(
+        QueryBuilder::delete("carts",['uid'=>$_SESSION['id'],'pid'=>$_GET['product']])
+    );
+
+    return [
+        'status'=>220,
+        'errore'=>1,
+        "do"=>[
+            [
+                'type'=>'changecartnumber',
+                'value'=>cart_number($_GET['product'],$_SESSION['id'])
+            ],
+            [
+                'type'=>'alertwarning',
+                'message'=>'محصول از سبد خرید شما حذف شد!!'
+            ],
+            [
+                'type'=>'changetargettext',
+                'text'=>'افزودن به سبد خرید'
+            ]
+        ]
+    ];
+}
+function cart_number($pid,$uid){
+    $db = new db('localhost','root','','kalachio');
+    $cartnumber = count($db->query(QueryBuilder::select('carts','*',['uid'=>$_SESSION['id']]))->fetchAll());
+    return $cartnumber;
+}
+function RemoveCart()
+{
+    $_GET['product'];
+    $db = new db('localhost','root','','kalachio');
+    $select = $db->query(
+        QueryBuilder::delete("carts",['uid'=>$_SESSION['id'],'pid'=>$_GET['product']])
+    );
+
+    return [
+        'status'=>220,
+        'errore'=>1,
+        "do"=>[
+            [
+                'type'=>'changecartnumber',
+                'value'=>cart_number($_GET['product'],$_SESSION['id'])
+            ],
+            [
+                'type'=>'alertwarning',
+                'message'=>'محصول از سبد خرید شما حذف شد!!'
+            ],
+            [
+                'type'=>'deletecartitem'
+            ]
+        ]
+    ];
 }

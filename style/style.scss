@@ -33,34 +33,38 @@ a.link{
     border: 1px solid gray;
     padding: 8px;
     border-radius: 8px;
-}
-.comment_user i{
-    display: inline-block;
-    color: black;
-    font-size: 2em;
-    vertical-align: middle;
-}
-.comment_user_username{
-    display: inline-block;
-    vertical-align: middle;
-    color: black;
-    font-size: 1em;
-    margin: 8px 0;
-}
-.comment_user_subject{
-    margin: 8px 8px 0 8px;
-    display: block;
-    font-size: .9em;
-}
-.comment_user_message{
-    display: block;
-    font-size: 0.8em;
-    margin: 16px 8px;
+    i{
+        display: inline-block;
+        color: black;
+        font-size: 2em;
+        vertical-align: middle;
+    }
+    &_username{
+        display: inline-block;
+        vertical-align: middle;
+        color: black;
+        font-size: 1em;
+        margin: 8px 0;
+    }
+    &_subject{
+        margin: 8px 8px 0 8px;
+        display: block;
+        font-size: .9em;
+    }
+    &_message{
+        display: block;
+        font-size: 0.8em;
+        margin: 16px 8px;
+    }
+    p.nocomment{
+        text-align: center;
+        padding: 2rem;
+    }
 }
 .productView{
     &_detail{
         &_title{
-            font-size: 2rem;
+            font-size: 1.4rem;
             border-bottom: 1px solid rgb(194, 194, 194);
             margin: 4px 0 16px 4px;
             padding-right: 4px;
