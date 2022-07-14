@@ -7,6 +7,7 @@ const links = array(
     'search' => "searchProduct",
     'product' => "Product",
     'cart' => "Cart",
+    'loadattribure' => "loadAttr",
     'addcart' => "AddCart",
     'removecart' => "RemoveCart",
     'userpanel' => "UserPanel",
@@ -298,7 +299,7 @@ function AddCart()
             "do"=>[
                 [
                     'type'=>'changecartnumber',
-                    'value'=>cart_number($_GET['product'],$_SESSION['id'])
+                    'value'=>cartNumber($_SESSION['id'])
                 ],
                 [
                     'type'=>'alertsuccess',
@@ -322,7 +323,7 @@ function AddCart()
         "do"=>[
             [
                 'type'=>'changecartnumber',
-                'value'=>cart_number($_GET['product'],$_SESSION['id'])
+                'value'=>cartNumber($_SESSION['id'])
             ],
             [
                 'type'=>'alertwarning',
@@ -335,9 +336,9 @@ function AddCart()
         ]
     ];
 }
-function cart_number($pid,$uid){
+function cartNumber($uid){
     $db = new db('localhost','root','','kalachio');
-    $cartnumber = count($db->query(QueryBuilder::select('carts','*',['uid'=>$_SESSION['id']]))->fetchAll());
+    $cartnumber = count($db->query(QueryBuilder::select('carts','*',['uid'=>$uid]))->fetchAll());
     return $cartnumber;
 }
 function RemoveCart()
@@ -354,7 +355,7 @@ function RemoveCart()
         "do"=>[
             [
                 'type'=>'changecartnumber',
-                'value'=>cart_number($_GET['product'],$_SESSION['id'])
+                'value'=>cartNumber($_SESSION['id'])
             ],
             [
                 'type'=>'alertwarning',
@@ -364,5 +365,44 @@ function RemoveCart()
                 'type'=>'deletecartitem'
             ]
         ]
+    ];
+}
+function loadAttr(){
+    if (isset($_SESSION['id'])) {
+        $db = new db('localhost','root','','kalachio');
+        $cartitems = $db->query(
+            QueryBuilder::select("carts",'*',['uid'=>$_SESSION['id']],["id"=>"DESC"])
+        )->fetchAll();
+        $allprice = 0;
+        foreach ($cartitems as $key => $value) {
+            $product = $db->query(
+                QueryBuilder::select("products",'*',['id'=>$value['pid']])
+            )->fetchArray();
+            foreach ($product as $pkey => $pvalue) {
+                $value[$pkey] = $pvalue;
+            }
+            $cartitems[$key] = $value;
+            $allprice += (int)$value['price'];
+        }
+        return [
+            'status'=>220,
+            'errore'=>1,
+            "do"=>[
+                [
+                    'type'=>'changecartnumber',
+                    'value'=>cartNumber($_SESSION['id'])
+                ],
+                [
+                    'type'=>'rendercartmodal',
+                    'data' => $cartitems
+                ]
+            ]
+        ];
+    }
+
+    return [
+        'status'=>220,
+        'errore'=>1,
+        "do"=>[]
     ];
 }

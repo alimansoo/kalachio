@@ -40,6 +40,7 @@ const address = array(
     'cart' => 'cart',
     'addcart' => 'adcart',
     'removecart' => 'rmcart',
+    'loadattribure' => 'lodattr',
     //UserPanel
     'userpanel' => 'userpanel',
     'myorders' => 'myorders',

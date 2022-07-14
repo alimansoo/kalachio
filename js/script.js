@@ -81,6 +81,7 @@ async function RenderMain(url = false) {
             },500);
         }
         else{
+            await LoadAttribute();
             ApplyScripts();
         }
     }
@@ -112,6 +113,7 @@ async function RenderData(url = false) {
                    
     }
     clearInterval(mainTimer3);
+    await LoadAttribute();
     ApplyScripts();
 }
 function ReplaceSection(template) {
@@ -227,7 +229,7 @@ async function formEvent(e) {
         await Dojson(data.do[key],e.target);
     }
 }
-async function Dojson(json,element) {
+async function Dojson(json,element = null) {
     switch (json.type) {
         case 'loadpage':
             mainTimer =  setInterval(function () {
@@ -287,6 +289,9 @@ async function Dojson(json,element) {
             var cartitem = element.closest('.cart-list_item');
             cartitem.parentNode.removeChild(cartitem);
             break;
+        case "rendercartmodal":
+            renderCartModal(json.data);
+            break;
         default:
             break;
     }
@@ -314,9 +319,81 @@ async function FetchPost(url,formData) {
     return json;
 }
 function ApplyScripts() {
+    
     ajaxWorker();
     ApplySlider();
     ApplySidebar();
     ApplyInputs();
     ApplyDropdowns();
+    ApplyModal();
+}
+async function LoadAttribute() {
+    var linkhref = getLinkUrl("lodattr");
+    console.log(linkhref);
+
+    const response = await fetch(linkhref);
+    const json = await response.json();
+
+    for (const key in json.do) {
+        Dojson(json.do[key]);
+    }
+}
+function renderCartModal(data){
+    let cartlist = '';
+    for (const cartitem of data) {
+        cartlist += `<div class="cart-list_item">
+        <img  src='${cartitem.imgSrc}' alt='' class="cart-list_item_img"/>
+        <div class="cart-list_item_content">
+            <h5 class="cart-list_item_content_title">${cartitem.title}</h5>
+            <div class="cart-list_item_content_price">
+            ${cartitem.price}
+                <span class="price_component">ریال</span>
+            </div>
+            <div class="cart-list_item_content_qty">
+                <a href='' class='quantity_btn'>+</a>
+                    <span class='quantity_value'>${cartitem.qty}</span>
+                <a href='' class='quantity_btn'>-</a>
+            </div>
+            <div class="cart-list_item_content_action">
+                <a class='' href='http://localhost/KalaChio/rmcart?product=${cartitem.id}'><i class='fas fa-trash'></i>حذف</a>
+            </div>
+        </div>  
+    </div>`;
+    }
+    
+    let modal = document.createElement('div');
+    modal.className = 'modal hide';
+    modal.id = "modalcart";
+
+    let modalbg = document.createElement('div');
+    modalbg.className = 'modal_bg';
+    modal.appendChild(modalbg);
+
+    let modaldialog = document.createElement('div');
+    modaldialog.className = 'modal_dialog';
+
+    let modaldialog_header = document.createElement('div');
+    modaldialog_header.className = 'modal_dialog_header';
+    modaldialog_header.innerHTML= `
+        <i class='far fa-times-circle close-btn'></i>
+        <h3>سبد خرید</h3>
+    `;
+    let modaldialog_content = document.createElement('div');
+    modaldialog_content.className = 'modal_dialog_content';
+    let modaldialog_footer = document.createElement('div');
+    modaldialog_footer.className = 'modal_dialog_footer';
+    modaldialog_footer.innerHTML= `
+        <div><h6>مجموع سبد خرید:</h6>3000000</div>
+        <a href="http://localhost/KalaChio/cart" class="btn btn-primary">رفتن به سبد خرید</a>
+    `;
+
+    modaldialog.appendChild(modaldialog_header);
+    modaldialog.appendChild(modaldialog_content);
+    modaldialog.appendChild(modaldialog_footer);
+
+    modal.appendChild(modaldialog);
+
+    modaldialog_content.innerHTML = cartlist;
+    document.querySelector('section#content').appendChild(modal);
+    console.log(modal);
 }

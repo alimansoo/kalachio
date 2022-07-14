@@ -1,0 +1,61 @@
+.modal.hide{ 
+    display: none;
+}
+.modal{
+    &_bg{
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        background-color: gray;
+        opacity: 0.5;
+        z-index: 1004;
+    }
+    &_dialog{
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        z-index: 1005;
+        background-color: white;
+        max-width: 95vw;
+        width: max-content;
+        max-height: 80vh;
+        height: max-content;
+        transition: all 0.5s;
+        transform: translate(-50%,-50%);
+        overflow-x: hidden;
+        overflow-y: auto;
+        border-radius: 8px;
+        &_content{
+            padding: 0.5rem;
+        }
+        &_header,&_footer{
+            position: sticky;
+            padding: .75rem;
+            background-color: white;
+            display: flex;
+            i{
+                font-size: 1.5rem;
+            }
+            h3{
+                margin: 0;
+            }
+            h6{
+                margin: 0;
+            }
+        }
+        &_header{
+            top: 0;
+            border-bottom: 1px solid gray;
+            i{
+                margin-left: 8px;
+            }
+        }
+        &_footer{
+            bottom: 0;
+            border-top: 1px solid gray;
+            justify-content: space-between;
+        }
+    }
+}
